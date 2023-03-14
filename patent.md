@@ -7,7 +7,7 @@
       <div class="paper_list">
         <div id="search_keyword">
           <div class="search_block row">
-            <form action="https://samurai-genso.escidoc.jp/list/patent" accept-charset="UTF-8" method="get">
+            <form action="★★パス/patent" accept-charset="UTF-8" method="get">
               <input type="search" name="q" id="search_word" value="" class="col-md-10 txt_input txt_result" placeholder="">
               <input type="submit" name="commit" value="検索する" class="btn" data-disable-with="検索する">
             </form>
@@ -18,8 +18,9 @@
         </h2>
       </div>
     </section>
-  <div id="bnr_link">
-    <div class="clearfix">
+    <div id="bnr_link">
+      <div class="clearfix">
+      </div>
     </div>
   </div>
 </article>
