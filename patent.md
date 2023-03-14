@@ -14,7 +14,10 @@
           </div>
         </div>
         <h2 class="result-summary">
-          ruby
+          {% for hensu in site.data.SAMURAI_patent %}
+          {{ hensu.管理番号 }}
+          {% endfor %}
+          件の特許が見つかりました。特許は出願年月日順に表示しています。
         </h2>
       </div>
     </section>
