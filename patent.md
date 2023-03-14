@@ -14,7 +14,7 @@
           </div>
         </div>
         <h2 class="result-summary">
-          <%= Time.now.strftime("%m/%d/%Y")
+          <%= Time.now.strftime("%m/%d/%Y") %>
           {% for hensu in site.data.SAMURAI_patent %}
           {% endfor %}
           件の特許が見つかりました。特許は出願年月日順に表示しています。
