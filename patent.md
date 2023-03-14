@@ -1,1 +1,24 @@
-contents
+    <article class="wrap search_prof search_article">
+          <div class="main_frame clearfix">
+<section class="contents articles">
+  <h2 class="pagetitle">特許の一覧</h2>
+    <p class="txt text-right">最終更新時刻: 2021年02月26日
+  </p>
+  <div class="paper_list">
+    <div id="search_keyword">
+      <div class="search_block row">
+        <form action="https://samurai-genso.escidoc.jp/list/patent" accept-charset="UTF-8" method="get">
+          <input type="search" name="q" id="search_word" value="" class="col-md-10 txt_input txt_result" placeholder="">
+          <input type="submit" name="commit" value="検索する" class="btn" data-disable-with="検索する">
+        </form>
+      </div>
+    </div>
+    <h2 class="result-summary">
+      ruby
+    </div>
+</section>
+   <div id="bnr_link">
+            <div class="clearfix">
+            </div>
+          </div>
+    </article>
