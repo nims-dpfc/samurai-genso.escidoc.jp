@@ -14,8 +14,8 @@
           </div>
         </div>
         <h2 class="result-summary">
+          <%= Time.now.strftime("%m/%d/%Y")
           {% for hensu in site.data.SAMURAI_patent %}
-          puts "Hello World"
           {% endfor %}
           件の特許が見つかりました。特許は出願年月日順に表示しています。
         </h2>
