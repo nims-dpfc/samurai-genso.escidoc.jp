@@ -15,6 +15,7 @@
         </div>
         <h2 class="result-summary">
           ruby
+        </h2>
       </div>
     </section>
   <div id="bnr_link">
