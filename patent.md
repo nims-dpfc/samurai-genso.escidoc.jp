@@ -9,6 +9,7 @@ title: 特許の一覧
         </p>
       <div class="paper_list">
         <div id="search_keyword">
+          るなjsをココに入れる
           <div class="search_block row">
             <form action="★★パス/patent" accept-charset="UTF-8" method="get">
               <input type="search" name="q" id="search_word" value="" class="col-md-10 txt_input txt_result" placeholder="">
