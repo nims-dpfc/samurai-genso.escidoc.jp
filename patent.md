@@ -1,7 +1,10 @@
+---
+title: '特許の一覧'
+---
 <article class="wrap search_prof search_article">
   <div class="main_frame clearfix">
     <section class="contents articles">
-      <h2 class="pagetitle">特許の一覧</h2>
+      <h2 class="pagetitle">{{ page.title }}</h2>
         <p class="txt text-right">最終更新時刻: 2021年02月26日
         </p>
       <div class="paper_list">
