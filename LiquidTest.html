@@ -23,7 +23,7 @@ layout: default
           {% for name_Inventor in InventorArray %}
             {% for name_Link in LinkArray %}
               {% if name_Link == name_Inventor %}
-                {{LinkArray | forloop.index0 }}
+                {{forloop.index0}}
               {% endif %}
             {% endfor %}
           {{name_Inventor}}
