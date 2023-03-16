@@ -8,6 +8,9 @@ layout: default
 {% for row in SAMURAI_patent_sort %}
   {% assign rowYear = row.FilingDate | slice: 0, 4 %}
   {% if year != rowYear %}
+    {% if year != 0 %}
+    </ul>  
+    {% endif %}
     <h3 class="year-subject">{{rowYear}}</h3>
     <ul class="list">
       <li>
