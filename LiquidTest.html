@@ -18,12 +18,13 @@ layout: default
         {{row.PublicationNo}}&nbsp;
         {{row.Title}}&nbsp;
         {% if row.Link %}
+        
           {% assign InventorArray = row.Inventor | split: ","%}
           {% assign LinkArray = row.Link | split: ","%}
           {% for name_Inventor in InventorArray %}
             {% for name_Link in LinkArray %}
               {% if name_Link == name_Inventor %}
-                {{LinkArray[{{forloop.index0}}+1]}}
+                {{LinkArray[forloop.index0]}}
               {% endif %}
             {% endfor %}
           {{name_Inventor}}
