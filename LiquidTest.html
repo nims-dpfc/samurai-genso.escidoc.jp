@@ -6,7 +6,7 @@ layout: default
 {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse %}
 
 {% for row in SAMURAI_patent_sort %}
-  {% assign rowYear = row.FilingDate | slice: 0, 3 %}
+  {% assign rowYear = row.FilingDate | slice: 0, 4 %}
   {% if year != rowYear %}
     <h3 class="year-subject">{{rowYear}}</h3>
     <ul class="list">
