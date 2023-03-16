@@ -2,5 +2,5 @@
 {% assign year=0}
 {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" %}
 {% for row in site.data.SAMURAI_patent_sort %}
-  {{row.Title}}
+  {{row.Title}}<br>
 {% endfor%}
