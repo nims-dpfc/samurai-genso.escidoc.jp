@@ -26,13 +26,13 @@ title: 特許の一覧
             </h2>
             <h3 class="year-subject">2019</h3>
             <ul class="list">
-              {% for row in site.date.SAMURAI_patent.csv %}
+              {% for row in site.date.SAMURAI_patent %}
                 <li>
                   {{ row.PublicationNo }}</a>&nbsp;
 
                 {{ row.Title }}&nbsp;
                 {{ row.Inventor }}&nbsp;
-              </li>
+                </li>
               {% endfor %}
             </ul>
             <h3 class="year-subject">2014</h3>
