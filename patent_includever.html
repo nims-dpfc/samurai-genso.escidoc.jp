@@ -26,26 +26,14 @@ title: 特許の一覧
             </h2>
             <h3 class="year-subject">2019</h3>
             <ul class="list">
-              <li>
-                <a href="https://patents.google.com/patent/JP2020139183/"
-                  target="_blank">特開2020-139183(P2020-139183A)</a>&nbsp;
-                ＳｍＺｒＦｅＣｏ磁性化合物およびその製造方法&nbsp;
-                小川大介,ペリン トズマン,高橋有紀子,広沢哲,宝野和博&nbsp;
+              {% for row in site.date.SAMURAI_patent.csv %}
+                <li>
+                  {{ row.PublicationNo }}</a>&nbsp;
+
+                {{ row.Title }}&nbsp;
+                {{ row.Inventor }}&nbsp;
               </li>
-              <li>
-                <a href="https://patents.google.com/patent/JP2020113648/"
-                  target="_blank">特開2020-113648(P2020-113648A)</a>&nbsp;
-                希土類磁石、膜、積層体、希土類磁石の製造方法、モータ、発電機、及び、自動車&nbsp;
-                小川大介,高橋有紀子,広沢哲,宝野和博&nbsp;
-              </li>
-            </ul>
-            <h3 class="year-subject">2017</h3>
-            <ul class="list">
-              <li>
-                <a href="https://patents.google.com/patent/JPWO2018070322/" target="_blank">WO2018/070322</a>&nbsp;
-                立体物形成指示装置、立体物の製造方法、及びプログラム&nbsp;
-                山崎淳,古宇田光,長代新治,千田範夫,古川祐貴,古賀良太&nbsp;
-              </li>
+              {% endfor %}
             </ul>
             <h3 class="year-subject">2014</h3>
             <ul class="list">
