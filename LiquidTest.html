@@ -3,6 +3,6 @@ layout: default
 ---
 {% assign year=0 %}
 {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" %}
-{% for row in site.data.SAMURAI_patent_sort %}
+{% for row in SAMURAI_patent_sort %}
   {{row.Title}}<br>
 {% endfor %}
