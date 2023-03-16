@@ -13,17 +13,16 @@ layout: default
     {% endif %}
     <h3 class="year-subject">{{rowYear}}</h3>
     <ul class="list">
-    {% assign year=rowYear %}
-  {% endif %}
-  {% if row.Link %}
- 
-  {% else %}
-      
+    {% assign year = rowYear %}
   {% endif %}
       <li>
         {{row.PublicationNo}}&nbsp;
         {{row.Title}}&nbsp;
-        {{row.Inventor}}&nbsp;
+        {% if row.Link %}
+          
+        {% else %}
+          {{row.Inventor}}&nbsp;      
+        {% endif %}
       </li>
 {% endfor %}
     </ul>
