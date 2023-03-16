@@ -1,6 +1,8 @@
 ---
 title: 特許の一覧
 ---
+{% include title.html %}
+
 <article class="wrap search_prof search_article">
   <div class="main_frame clearfix">
     <section class="contents articles">
