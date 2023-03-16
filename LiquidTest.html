@@ -5,6 +5,7 @@ layout: default
 {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse %}
 
 {% for row in SAMURAI_patent_sort %}
+{{ row | inspect }}
   {% assign rowYear = row.FilingDate | slice: 0, 4 %}
   {% if year != rowYear %}
     {% if forloop.first != true %}
@@ -15,7 +16,9 @@ layout: default
     {% assign year=rowYear %}
   {% endif %}
   {% if row.Link %}
-          
+ 
+  {% else %}
+      
   {% endif %}
       <li>
         {{row.PublicationNo}}&nbsp;
