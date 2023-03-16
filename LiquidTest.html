@@ -7,6 +7,7 @@ layout: default
 
 {% for row in SAMURAI_patent_sort %}
   {% assign rowYear = row.FilingDate | slice: 0, 4 %}
+  {% if row.link !=  %}
   {% if year != rowYear %}
     {% if year != 0 %}
     </ul>  
@@ -23,8 +24,11 @@ layout: default
       <li>
         {{row.PublicationNo}}&nbsp;
         {{row.Title}}&nbsp;
-        {{row.Inventor}}&nbsp;        
+        {{row.Inventor}}&nbsp;
       </li>        
   {% endif %}
+      {% if row.Link %}
+        not null<br>
+      {% endif %}
 {% endfor %}
     </ul>
