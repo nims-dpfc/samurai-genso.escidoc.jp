@@ -2,9 +2,26 @@
 layout: default
 ---
 {% assign year=0 %}
+{% assign row_year=0 %}
 {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse %}
+
 {% for row in SAMURAI_patent_sort %}
-{% if year != row.FilingDate | slice:0, 3 %}
-  {{row.Title}}<br>
-{% endif %}
+  {% row_year = row.FilingDate | slice: 0, 3 %}
+  {% if year != row_year %}
+    <h3 class="year-subject">{{row_year}}</h3>
+    <ul class="list">
+      <li>
+        {{row.PublicationNo}}&nbsp;
+        {{row.Title}}&nbsp;
+        {{row.Inventor}}&nbsp;
+      </li>
+    {% year=row.FilingDate %}
+  {% else %}
+      <li>
+        {{row.PublicationNo}}&nbsp;
+        {{row.Title}}&nbsp;
+        {{row.Inventor}}&nbsp;        
+      </li>        
+  {% endif %}
 {% endfor %}
+    </ul>
