@@ -11,7 +11,9 @@ year: 2020
 
 {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "PublicationDate" | reverse %}
 {% for row in SAMURAI_paper_sort %}
-  {% if row.PublicationDate | slice: 0,4 == 2020 %}
+  {% assign row_PubYear = row.PublicationDate | slice: 0,4 %}
+    {{row_PubYear}}
+    {% if row_PubYear == 2020 %}
     {{row.PublicationDate | slice: 0,4}}
   {% endif %}
 {% endfor %}
