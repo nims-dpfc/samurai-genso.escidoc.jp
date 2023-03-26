@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-{% assign year=0 %}
+{% assign year = 0 %}
 {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse %}
 
 {% for row in SAMURAI_patent_sort %}
@@ -18,17 +18,20 @@ layout: default
         {{row.PublicationNo}}&nbsp;
         {{row.Title}}&nbsp;
         {% if row.Link %}
-        
           {% assign InventorArray = row.Inventor | split: ","%}
           {% assign LinkArray = row.Link | split: ","%}
           {% for name_Inventor in InventorArray %}
+            {% assign linkFlag = 0 %}
             {% for name_Link in LinkArray %}
               {% if name_Link == name_Inventor %}
+                {% assign linkFlag = 1 %}
                 {% assign linkUrl = LinkArray | offset: forloop.index %}
-                {{ linkUrl }}
+                <a href="{{ linkUrl }}" target="_blank">{{ name_Inventor }}</a>
               {% endif %}
             {% endfor %}
-          {{name_Inventor}}
+            {% if linkFlag != true %}
+              {{ name_Inventor }}
+            {% endif %}
           {% if forloop.last != true %}
           ,
           {% endif %}
