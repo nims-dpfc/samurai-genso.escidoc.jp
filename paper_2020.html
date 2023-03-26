@@ -13,7 +13,7 @@ year: 2020
 {% for row in SAMURAI_paper_sort %}
         {{row.PublicationDate | slice: 0,4}}
 
-        {% if row.PublicationDate | slice: 0,4 == page.year %}
+        {% if row.PublicationDate | slice: 0,4 == 2020 %}
               一致しました
     {% endif %}
 {% endfor %}
