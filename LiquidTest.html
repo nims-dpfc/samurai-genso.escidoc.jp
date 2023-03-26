@@ -15,6 +15,11 @@ layout: default
     {% assign year = rowYear %}
   {% endif %}
       <li>
+        {% if row.PublicationNo contains "特開" %}
+          <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 2,5}}{{row.PublicationNo | slice: 7,12}}" target="_blank">{{ name_Inventor }}</a>
+        {% else %}
+          <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 0,5}}{{row.PublicationNo | slice: 7,12}}" target="_blank">{{ name_Inventor }}</a>
+        {% endif %}
         {{row.PublicationNo}}&nbsp;
         {{row.Title}}&nbsp;
         {% if row.Link %}
