@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 特許の一覧
-year: 2020
+year: '2020'
 ---
     <article class="wrap search_prof search_article">
       <div class="main_frame clearfix">
@@ -12,7 +12,7 @@ year: 2020
 {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "PublicationDate" | reverse %}
 {% for row in SAMURAI_paper_sort %}
   {% assign row_PubYear = row.PublicationDate | slice: 0,4 %}
-    {% if row_PubYear == '2020' %}
+    {% if row_PubYear == page.year %}
     {{row_PubYear}}
   {% endif %}
 {% endfor %}
