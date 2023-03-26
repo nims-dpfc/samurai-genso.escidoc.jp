@@ -17,6 +17,8 @@ year: '2012'
   {% assign row_PubYear = row.PublicationDate | slice: 0,4 %}
   {% if row_PubYear == page.year %}
     <li>
+    {{row.Title}}.<br>
+    {{row.PublicationMedia}}.  {% raw %}({% endraw %}{{row_PubYear}}{% raw %}){% endraw %} - {{row.DOI}}
     {% if row.SamuraiLink %}
       {% assign AuthorArray = row.Author | split: ","%}
       {% assign LinkArray = row.SamuraiLink | split: ","%}
@@ -38,7 +40,7 @@ year: '2012'
     {% else %}
       {{row.Author}}
     {% endif %}
-    .{{row.Title}}.{{row.PublicationMedia}}.({{row_PubYear}}) - {{row.DOI}}
+    
     </li>
   {% endif%}
 {% endfor %}
