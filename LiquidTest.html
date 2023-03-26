@@ -16,9 +16,9 @@ layout: default
   {% endif %}
       <li>
         {% if row.PublicationNo contains "特開" %}
-          <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 2,4}}{{row.PublicationNo | slice: 7,6}}" target="_blank">{{ name_Inventor }}
+          <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 2,4}}{{row.PublicationNo | slice: 7,6}}" target="_blank">
         {% else %}
-          <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 0,6}}{{row.PublicationNo | slice: 7,6}}" target="_blank">{{ name_Inventor }}
+          <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 0,6}}{{row.PublicationNo | slice: 7,6}}" target="_blank">
         {% endif %}
         {{row.PublicationNo}}</a>&nbsp;
         {{row.Title}}&nbsp;
