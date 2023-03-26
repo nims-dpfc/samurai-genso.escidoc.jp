@@ -9,7 +9,6 @@ title: 特許の一覧
           <div class="paper_list">
 {% assign year = 0 %}
 {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse %}
-
 {% for row in SAMURAI_patent_sort %}
   {% assign rowYear = row.FilingDate | slice: 0, 4 %}
   {% if year != rowYear %}
