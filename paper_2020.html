@@ -8,10 +8,11 @@ year: 2020
         <section class="contents articles">
           <h2 class="pagetitle">{{ page.title }}</h2>
           <div class="paper_list">
-              
+
 {% assign year = 0 %}
 {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "PublicationDate" | reverse %}
 {% for row in SAMURAI_paper_sort %}
+    test
     {{ row.PublicationDate | slice: 0,4 }}
     {% if page.year == row.PublicationDate | slice: 0,4 %}
     {{row.PublicationDate}}
