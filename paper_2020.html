@@ -13,46 +13,7 @@ year: 2020
 {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "PublicationDate" | reverse %}
 {% for row in SAMURAI_paper_sort %}
   {% if page.year == row.PublicationDate | slice: 0,4 %}
-    {% assign rowYear = row.FilingDate | slice: 0, 4 %}
-    {% if year != rowYear %}
-      {% if forloop.first != true %}
-        </ul>
-      {% endif %}
-      <h3 class="year-subject">{{rowYear}}</h3>
-      <ul class="list">
-      {% assign year = rowYear %}
-    {% endif %}
-        <li>
-          {% if row.PublicationNo contains "特開" %}
-            <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 2,4}}{{row.PublicationNo | slice: 7,6}}" target="_blank">
-          {% else %}
-            <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 0,6}}{{row.PublicationNo | slice: 7,6}}" target="_blank">
-          {% endif %}
-          {{row.PublicationNo}}</a>&nbsp;
-          {{row.Title}}&nbsp;
-          {% if row.Link %}
-            {% assign InventorArray = row.Inventor | split: ","%}
-            {% assign LinkArray = row.Link | split: ","%}
-            {% for name_Inventor in InventorArray %}
-              {% assign linkFlag = false %}
-              {% for name_Link in LinkArray %}
-                {% if name_Link == name_Inventor %}
-                  {% assign linkFlag = true %}
-                  <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Inventor }}</a>
-                {% endif %}
-              {% endfor %}
-              {% if linkFlag != true %}
-                {{ name_Inventor }}
-              {% endif %}
-              {% if forloop.last != true %}
-                ,
-              {% endif %}
-            {% endfor %}
-            &nbsp;
-          {% else %}
-            {{row.Inventor}}&nbsp;      
-          {% endif %}
-        </li>
+    {{row.PublicationDate}}
   {% endif %}     
 {% endfor %}
 
