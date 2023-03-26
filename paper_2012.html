@@ -38,8 +38,7 @@ year: '2012'
     {% else %}
       {{row.Author}}
     {% endif %}
-    .
-    他の要素
+    .{{row.Title}}.{{row.PublicationMedia}}.
     </li>
   {% endif%}
 {% endfor %}
