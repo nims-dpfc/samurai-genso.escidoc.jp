@@ -31,7 +31,9 @@ layout: default
             {% if linkFlag != true %}
               {{ name_Inventor }}
             {% endif %}
-          {% if forloop.last != true %},{% endif %}
+            {% if forloop.last != true %}
+              ,
+            {% endif %}
           {% endfor %}
           &nbsp;
         {% else %}
