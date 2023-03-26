@@ -20,10 +20,9 @@ year: '2012'
     {{row.Title}}.<br>
     {{row.PublicationMedia}}. {% raw %}({% endraw %}{{row_PubYear}}{% raw %}){% endraw %} - 
     {% if row.DOI | size > 0  %}        
-      {{row.DOI}}<br>
-    {% else %}
-      .<br>
+      {{row.DOI}}
     {% endif %}
+      .<br>
     {% if row.SamuraiLink %}
       {% assign AuthorArray = row.Author | split: ","%}
       {% assign LinkArray = row.SamuraiLink | split: ","%}
