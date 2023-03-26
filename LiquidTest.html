@@ -25,7 +25,7 @@ layout: default
             {% for name_Link in LinkArray %}
               {% if name_Link == name_Inventor %}
                 {% assign linkFlag = 1 %}
-                {% assign linkUrl = LinkArray | offset: forloop.index %}
+                {% assign linkUrl = LinkArray | offset: 2 %}
                 <a href="{{ linkUrl }}" target="_blank">{{ name_Inventor }}</a>
               {% endif %}
             {% endfor %}
