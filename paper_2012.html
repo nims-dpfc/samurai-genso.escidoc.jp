@@ -38,13 +38,12 @@ year: '2012'
     {% else %}
       {{row.Author}}
     {% endif %}
-    .{{row.Title}}.{{row.PublicationMedia}}.
+    .{{row.Title}}.{{row.PublicationMedia}}.({{row_PubYear}}) - {{row.DOI}}
     </li>
   {% endif%}
 {% endfor %}
 
 </ul>
-
           </div>
         </section>
       </div>
