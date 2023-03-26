@@ -21,10 +21,10 @@ layout: default
           {% assign InventorArray = row.Inventor | split: ","%}
           {% assign LinkArray = row.Link | split: ","%}
           {% for name_Inventor in InventorArray %}
-            {% assign linkFlag = 0 %}
+             assign linkFlag = false
             {% for name_Link in LinkArray %}
               {% if name_Link == name_Inventor %}
-                {% assign linkFlag = 1 %}
+                {% assign linkFlag = true %}
                 <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Inventor }}</a>
               {% endif %}
             {% endfor %}
