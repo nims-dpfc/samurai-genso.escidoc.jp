@@ -64,7 +64,7 @@ title: 特許の一覧
    const documents = [
   {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
   {% for row in SAMURAI_patent_sort -%}
-    {'PublicationNo': '{{row.PublicationNo}}', 'Title': '{{row.Title}}', 'Inventor': '{{row.Inventor}}', 'Link': '{{row.Link}}', 'FilingDate': '  {{row.FilingDate}}' },
+    {'PublicationNo': '{{row.PublicationNo}}', 'Title': '{{row.Title}}', 'Inventor': '{{row.Inventor}}', 'Link': '{{row.Link}}', 'FilingDate': '{{row.FilingDate}}' },
   {% endfor -%}
   ]
 
