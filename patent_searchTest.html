@@ -2,6 +2,14 @@
 layout: default
 title: 特許の一覧
 ---
+<script>
+var patent = [
+{% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse %}
+{% for row in SAMURAI_patent_sort %}
+  {'PublicationNo': row.PublicationNo, 'Title': row.Title, 'Inventor': row.Inventor, 'Link': row.Link, 'FilingDate': row.FilingDate},
+{% endfor %}
+]
+</script>
     <article class="wrap search_prof search_article">
       <div class="main_frame clearfix">
         <section class="contents articles">
