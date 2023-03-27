@@ -89,7 +89,8 @@ title: 特許の一覧
             this.add(doc);
           }, this);
       });
-      console.log('Search for `analyzer`: ', idx.search(/aa/));
+      
+      console.log('Search for `analyzer`: ', idx.search(new RegExp("aa")));
       console.log('Search for `特開`: ', idx.search(/.*特開.*/));
       console.log('Search for `同義語`: ', idx.search(/2019/));
   });
