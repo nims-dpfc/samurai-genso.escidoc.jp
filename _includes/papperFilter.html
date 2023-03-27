@@ -1,0 +1,53 @@
+    <article class="wrap search_prof search_article">
+      <div class="main_frame clearfix">
+        <section class="contents articles">
+          <h2 class="pagetitle">{{ page.title }}</h2>
+          <div class="paper_list">
+
+<h3 class="year-subject">{{page.year}}</h3>
+<ul class="list">
+
+{% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "PublicationDate" | reverse %}
+{% for row in SAMURAI_paper_sort %}
+  {% assign row_PubYear = row.PublicationDate | slice: 0,4 %}
+  {% if row_PubYear == page.year %}
+    <li>
+    {{row.Title}}.<br>
+    {{row.PublicationMedia}}. {% raw %}({% endraw %}{{row_PubYear}}{% raw %}){% endraw %} - 
+    {% if row.DOI | size > 0  %}        
+        <a href="https://doi.org/{{row.DOI}}" target="_blank">{{row.DOI}}</a>
+    {% endif %}
+      .<br>
+    {% if row.SamuraiLink %}
+      {% assign AuthorArray = row.Author | split: ","%}
+      {% assign LinkArray = row.SamuraiLink | split: ","%}
+      {% for name_Author in AuthorArray %}
+        {% assign linkFlag = false %}
+        {% for name_Link in LinkArray %}
+          {% if name_Link == name_Author %}
+            {% assign linkFlag = true %}
+            <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Author }}</a>
+          {% endif %}
+        {% endfor %}
+        {% if linkFlag != true %}
+          {{ name_Author }}
+        {% endif %}
+        {% if forloop.last != true %}
+          ,
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      {{row.Author}}
+    {% endif %}    
+    </li>
+  {% endif%}
+{% endfor %}
+  </ul>
+          </div>
+        </section>
+      </div>
+      <div id="bnr_link">
+        <div class="clearfix">
+        </div>
+      </div>
+    </article>
