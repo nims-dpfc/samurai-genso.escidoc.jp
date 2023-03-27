@@ -7,50 +7,50 @@ title: 特許の一覧
         <section class="contents articles">
           <h2 class="pagetitle">{{ page.title }}</h2>
           <div class="paper_list">
-{% assign year = 0 %}
-{% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse %}
-{% for row in SAMURAI_patent_sort %}
-  {% assign rowYear = row.FilingDate | slice: 0, 4 %}
-  {% if year != rowYear %}
-    {% if forloop.first != true %}
+{% assign year = 0 -%}
+{% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
+{% for row in SAMURAI_patent_sort -%}
+  {% assign rowYear = row.FilingDate | slice: 0, 4 -%}
+  {% if year != rowYear -%}
+    {% if forloop.first != true -%}
       </ul>
-    {% endif %}
+    {% endif -%}
     <h3 class="year-subject">{{rowYear}}</h3>
     <ul class="list">
-    {% assign year = rowYear %}
-  {% endif %}
+    {% assign year = rowYear -%}
+  {% endif -%}
       <li>
-        {% if row.PublicationNo contains "特開" %}
+        {% if row.PublicationNo contains "特開" -%}
           <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 2,4}}{{row.PublicationNo | slice: 7,6}}" target="_blank">
-        {% else %}
+        {% else -%}
           <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 0,6}}{{row.PublicationNo | slice: 7,6}}" target="_blank">
-        {% endif %}
+        {% endif -%}
         {{row.PublicationNo}}</a>&nbsp;
         {{row.Title}}&nbsp;
-        {% if row.Link %}
-          {% assign InventorArray = row.Inventor | split: ","%}
-          {% assign LinkArray = row.Link | split: ","%}
-          {% for name_Inventor in InventorArray %}
-            {% assign linkFlag = false %}
-            {% for name_Link in LinkArray %}
-              {% if name_Link == name_Inventor %}
-                {% assign linkFlag = true %}
+        {% if row.Link -%}
+          {% assign InventorArray = row.Inventor | split: ","-%}
+          {% assign LinkArray = row.Link | split: ","-%}
+          {% for name_Inventor in InventorArray -%}
+            {% assign linkFlag = false -%}
+            {% for name_Link in LinkArray -%}
+              {% if name_Link == name_Inventor -%}
+                {% assign linkFlag = true -%}
                 <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Inventor }}</a>
-              {% endif %}
-            {% endfor %}
-            {% if linkFlag != true %}
+              {% endif -%}
+            {% endfor -%}
+            {% if linkFlag != true -%}
               {{ name_Inventor }}
-            {% endif %}
-            {% if forloop.last != true %}
+            {% endif -%}
+            {% if forloop.last != true -%}
               ,
-            {% endif %}
-          {% endfor %}
+            {% endif -%}
+          {% endfor -%}
           &nbsp;
-        {% else %}
+        {% else -%}
           {{row.Inventor}}&nbsp;      
-        {% endif %}
+        {% endif -%}
       </li>
-{% endfor %}
+{% endfor -%}
     </ul>            
           </div>    
         </section>
