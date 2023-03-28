@@ -84,17 +84,27 @@ layout: default
     </li>
 {% endfor -%}
     </ul>
-            </div> 
+  </div> 
   <p class="past"><a href="paper">一覧でさらに表示する</a></p>
 </div>
 <div class="list-panel patent">
 <h2 class="title">新着特許
 <span class="date">更新日： 2023年03月31日 </span>
 </h2>
-<ul class="list">
+{% assign year = 0 -%}
 {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
 {% for row in SAMURAI_patent_sort limit:10 -%}
   {% assign rowYear = row.FilingDate | slice: 0, 4 -%}
+  {% if year != rowYear -%}
+    {% if forloop.first != true -%}
+      </ul>
+      </div>
+    {% endif -%}
+    <div class="filterBlock">
+    <h3 class="year-subject">{{rowYear}}</h3>
+    <ul class="list">
+    {% assign year = rowYear -%}
+  {% endif -%}
       <li data-rowno="{{row.No}}">
         {% if row.PublicationNo contains "特開" -%}
           <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 2,4}}{{row.PublicationNo | slice: 7,6}}" target="_blank">
@@ -127,8 +137,9 @@ layout: default
         {% endif -%}
       </li>
 {% endfor -%}
-</ul>
-<p class="past"><a href="patent">一覧でさらに表示する</a></p>
+    </ul>
+  </div>
+  <p class="past"><a href="patent">一覧でさらに表示する</a></p>
 </div>
 </div>
 <div class="col-md-3">
