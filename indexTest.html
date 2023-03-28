@@ -222,8 +222,17 @@ layout: default
     });
 
     $(".btn").on('click', function() {
-      console.log($('#search-type').val());
-      
+      switch($('#search-type').val()){
+        case "":
+          console.log('1');
+          break;
+        case "paper":
+          console.log('2');
+          break;
+        case "patent":
+          console.log('3');
+          break;
+      }
       
       //      $("div.filterBlock").hide();
 //      $("ul.list li").hide();
