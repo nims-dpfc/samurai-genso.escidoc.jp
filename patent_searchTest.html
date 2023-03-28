@@ -64,7 +64,7 @@ title: 特許の一覧
       </div>
     </article>
 <script>
-  $(function(){
+  $(function () {
     const documents = [
       {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
       {% for row in SAMURAI_patent_sort -%}
@@ -93,15 +93,15 @@ title: 特許の一覧
         }, this);
       });
     });
-  });
 
-  function filterExec() {
-    $("h3.year-subject").hide();
-    $("ul.list li").hide();
-    const results = idx.search('高橋'); //検索ワード
-    results.forEach(function (row) {
-      $("[data-rowno=" + row["ref"] + "]").parent().parent().children("h3.year-subject").show();
-      $("[data-rowno=" + row["ref"] + "]").show();
-    });
-  };
+    function filterExec() {
+      $("h3.year-subject").hide();
+      $("ul.list li").hide();
+      const results = idx.search('高橋'); //検索ワード
+      results.forEach(function (row) {
+        $("[data-rowno=" + row["ref"] + "]").parent().parent().children("h3.year-subject").show();
+        $("[data-rowno=" + row["ref"] + "]").show();
+      });
+    };
+  });
 </script>
