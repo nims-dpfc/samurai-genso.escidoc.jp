@@ -246,13 +246,13 @@ layout: default
       const results_patent = idx_patent.search(word_patent, function (query) {
         return [query.term];
       });
-      console.log(results_patent);
       results_patent.forEach(function (row) {
         $("[data-rowno_patent=" + row["ref"] + "]").show();
         $("[data-rowno_patent=" + row["ref"] + "]").parent().siblings('h3.year-subject').show();
         $("[data-rowno_patent=" + row["ref"] + "]").parent().siblings('h4.data-type').show();
         $("[data-rowno_patent=" + row["ref"] + "]").parents(":hidden").show();
       });
+      console.log('1: ', results_patent.length);
     };
        
     $(".btn").on('click', function() {
