@@ -109,7 +109,7 @@ title: 特許の一覧
       $("div.filterBlock").hide();
       $("ul.list li").hide();
       const results = idx.search($('#search_word').val(), function (query) {
-        return query.term;
+        return [query.term];
       });
       results.forEach(function (row) {
         $("[data-rowno=" + row["ref"] + "]").show();
