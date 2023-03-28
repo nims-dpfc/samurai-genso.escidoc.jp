@@ -34,14 +34,18 @@
                 this.field('FilingDate')
 
                 /* add documents to index */
-            documents.forEach(function (doc) {
-              this.add(doc);
-            }, this);
-          });
+                this.add({
+                    "PublicationNo": "特開2020-139183(P2020-139183A)",
+                    "Title": "ＳｍＺｒＦｅＣｏ磁性化合物およびその製造方法",
+                    "Inventor": "小川大介,ペリン トズマン,高橋有紀子,広沢哲,宝野和博",
+                    "Link": "aa",
+                    "FilingDate": "2019/2/27 0:00",
+                });
+            });
 
             console.log('Search for `アナライザー`: ', idx.search('小川大'));
             console.log('Search for `a`: ', idx.search('a'));
-            console.log('Search for `同義語`: ', idx.search('希土類異方'));
+            console.log('Search for `同義語`: ', idx.search('磁性化合物'));
         });
     </script>
 </body>
