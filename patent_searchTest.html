@@ -61,43 +61,41 @@ title: 特許の一覧
       </div>
     </article>
 <script>
-   const documents = [
+   const documentsTest = [
   {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
   {% for row in SAMURAI_patent_sort -%}
     {'PublicationNo': '{{row.PublicationNo}}', 'Title': '{{row.Title}}', 'Inventor': '{{row.Inventor}}', 'Link': '{{row.Link}}', 'FilingDate': '{{row.FilingDate}}' },
   {% endfor -%}
-  ]
+  ];
 
-  require(['assets/js/lunr/lunr.js', 'assets/js/lunr-languages/lunr.stemmer.support.js', 'assets/js/lunr-languages/tinyseg.js', 'assets/js/lunr-languages/lunr.ja.js'], function(lunr, stemmerSupport,TinySegmenter, ja) {
-      // since the `stemmerSupport` and `ja` add keys on the lunr object, we'll pass it as reference to them
-      // in the end, we will only need `lunr`.
-      stemmerSupport(lunr); // adds `lunr.stemmerSupport`
-      TinySegmenter(lunr);
-      ja(lunr); // adds `lunr.ja` key
-      // at this point, `lunr` can be used
-      var idx = lunr(function () {
-          // use the language (ja)
-          this.use(lunr.ja);
-          // then, the normal lunr index initialization
-          this.field('PublicationNo')
-          this.field('Title')
-          this.field('Inventor')
-          this.field('Link')
-          this.field('FilingDate')
-          /* add documents to index */
-          documents.forEach(function (doc) {
-            this.add(doc);
-          }, this);
-      });
-      
-      console.log('Search for `aa`: ', idx.search('aa'));
-      console.log('Search for `*aa`: ', idx.search('*aa'));
-      console.log('Search for `特開`: ', idx.search('特開'));
-      console.log('Search for `特開*`: ', idx.search('特開*'));
-      console.log('Search for `*特開*`: ', idx.search('*特開*'));
-      console.log('Search for `A`: ', idx.search('A'));
-      console.log('Search for `*A*`: ', idx.search('*A*'));
-      console.log('Search for `*磁性化合物*`: ', idx.search('*磁性化合物*'));
-  });
+const lunr = require('assets/js/lunr/lunr.js')
+require('assets/js/lunr-languages/lunr.stemmer.support.js')(lunr)
+require('assets/js/lunr-languages/tinyseg.js')(lunr)
+require('assets/js/lunr-languages/lunr.ja.js')(lunr)
+
+const documents = [{
+    title: "吾輩は猫である",
+    text: "吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。"
+  },{
+    title: "学問のすゝめ",
+    text: "「天は人の上に人を造らず人の下に人を造らず」と言えり。されば天より人を生ずるには、万人は万人みな同じ位にして、生まれながら貴賤上下の差別なく、万物の霊たる身と心との働きをもって天地の間にあるよろずの物を資り、もって
+衣食住の用を達し、自由自在、互いに人の妨げをなさずしておのおの安楽にこの世を渡らしめ給うの趣意なり。"
+  },{
+    title: "蜘蛛の糸",
+    text: "ある日の事でございます。御釈迦様は極楽の蓮池のふちを、独りでぶらぶら御歩きになっていらっしゃいました。池の中に咲いている蓮の花は、みんな玉のようにまっ白で、そのまん中にある金色の蕊からは、何とも云えない好い匂が、絶
+間なくあたりへ溢れて居ります。極楽は丁度朝なのでございましょう。"
+}]
+
+const idx = lunr(function () {
+  this.ref('title')
+  this.field('text')
+  this.use(lunr.ja)
+
+  documents.forEach(function (doc) {
+    this.add(doc)
+  }, this)
+})
+
+console.log(idx.search('人'))
 
 </script>
