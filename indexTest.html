@@ -230,8 +230,8 @@ layout: default
     function search_paper(keyword){   
       console.log('11');
       console.log(keyword);
-      console.log(idx_paper.search(keyword));
-      const results_paper = idx_paper.search(keyword, function (query) {
+      console.log(idx_paper.search(word_paper));
+      const results_paper = idx_paper.search(word_paper, function (query) {
         return [query.term];
       });
       console.log('12');      
@@ -242,9 +242,9 @@ layout: default
       });
     };
 
-    function search_patent(keyword){   
+    function search_patent(word_patent){
       console.log('21');
-      const results_patent = idx_patent.search(keyword, function (query) {
+      const results_patent = idx_patent.search(word_patent, function (query) {
         return [query.term];
       });
       console.log('22');
@@ -266,24 +266,23 @@ layout: default
       $('div.main_frame section.contents').css('display','block');
       $("div.filterBlock").hide();
       $("ul.list li").hide();
-      const keyword = $('#search_word').val();
 
-      switch(keyword){
+      switch($('#search_word').val()){
         case "":
           console.log('1');
           $('h2.pagetitle').text('論文・特許の一覧');
-          search_paper(keyword);
-          search_patent(keyword);
+          search_paper($('#search_word').val());
+          search_patent($('#search_word').val());
           break;
         case "paper":
           console.log('2');
           $('h2.pagetitle').text('論文の一覧');
-          search_paper(keyword)
+          search_paper($('#search_word').val())
           break;          
         case "patent":
           console.log('3');
           $('h2.pagetitle').text('特許の一覧');
-          search_patent(keyword);
+          search_patent($('#search_word').val());
           break;
       };
     });
