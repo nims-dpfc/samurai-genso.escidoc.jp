@@ -93,7 +93,7 @@ title: 特許の一覧
         }, this);
       });
 
-      function search() {
+      $(document).ready(function(){
         $("h3.year-subject").hide();
         $("ul.list li").hide();
         const results = idx.search('高橋'); //検索ワード
