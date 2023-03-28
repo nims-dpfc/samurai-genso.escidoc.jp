@@ -240,6 +240,8 @@ layout: default
         $("[data-rowno_paper=" + row["ref"] + "]").parent().siblings('h4.data-type').show();
         $("[data-rowno_paper=" + row["ref"] + "]").parents(":hidden").show();
       });
+      console.log('paper: ', results_paper.length);
+      return results_paper.length;
     };
 
     function search_patent(word_patent){
@@ -252,7 +254,8 @@ layout: default
         $("[data-rowno_patent=" + row["ref"] + "]").parent().siblings('h4.data-type').show();
         $("[data-rowno_patent=" + row["ref"] + "]").parents(":hidden").show();
       });
-      console.log('1: ', results_patent.length);
+      console.log('patent: ', results_patent.length);
+      return results_patent.length;
     };
        
     $(".btn").on('click', function() {
@@ -286,7 +289,7 @@ layout: default
           $('h2.pagetitle').text('論文の一覧');
           search_paper(search_word);
           $('h4.data-type').hide();
-          break;          
+          break;
         case "patent":
           $('h2.pagetitle').text('特許の一覧');
           search_patent(search_word);
