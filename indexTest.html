@@ -222,6 +222,13 @@ layout: default
     });
 
     $(".btn").on('click', function() {
+      $('h2.title').hide();
+      $('p.past').hide();
+      $('div.col-md-3').hide();
+      $('div.main_inner div.row div.col-md-9').css('max-width','100%');
+      $('div.main_inner div.row').css('display','block');
+      $('.wrap .area1').css('background','white');
+      
       switch($('#search-type').val()){
         case "":
           console.log('1');
