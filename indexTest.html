@@ -38,10 +38,10 @@ layout: default
 </div>
 </div>
 </section>
-<h2 class="result-summary"></h2>
 <section class="home area1 articles">
 <div class="main_inner">
 <div class="row paper_list">
+<h2 class="result-summary"></h2>
 <div class="col-md-9">
 <div class="list-panel paper">
 <h2 class="title">新着論文
@@ -285,16 +285,17 @@ layout: default
           var paper_length = search_paper(search_word);
           var patent_length = search_patent(search_word);
           $('h2.result-summary').text(paper_length + patent_length,"件の論文・特許が見つかりました。 論文・特許は論文は出版年月日、特許は出願年月日順に表示しています。");
-          <h2 class="result-summary">
           break;
         case "paper":
           $('h2.pagetitle').text('論文の一覧');
           var paper_length = search_paper(search_word);
+          $('h2.result-summary').text(paper_length,"件の論文が見つかりました。 論文は出版年月日順に表示しています。");
           $('h4.data-type').hide();
           break;
         case "patent":
           $('h2.pagetitle').text('特許の一覧');
           var patent_length = search_patent(search_word);
+          $('h2.result-summary').text(patent_length,"件の特許が見つかりました。 特許は出願年月日順に表示しています。");
           $('h4.data-type').hide();
           break;
       };
