@@ -14,7 +14,7 @@ title: 特許の一覧
   {% if year != rowYear -%}
     {% if forloop.first != true -%}
       </ul>
-      </div>
+      </div class="filterBlock">
     {% endif -%}
     <div>
     <h3 class="year-subject">{{rowYear}}</h3>
@@ -54,7 +54,7 @@ title: 特許の一覧
       </li>
 {% endfor -%}
     </ul>
-            </div>
+            </div class="filterBlock">
           </div>    
         </section>
       </div>
@@ -96,12 +96,12 @@ title: 特許の一覧
   });
 
   function filterExec() {
-    $("h3.year-subject").hide();
+    $("div.filterBlock").hide();
     $("ul.list li").hide();
     const results = idx.search('高橋'); //検索ワード
     results.forEach(function (row) {
-      $("[data-rowno=" + row["ref"] + "]").parent().parent().children("h3.year-subject").show();
       $("[data-rowno=" + row["ref"] + "]").show();
+      $("[data-rowno=" + row["ref"] + "]").closest(":hidden").show();;
     });
   };
 </script>
