@@ -228,22 +228,24 @@ layout: default
     });
 
     function search_paper(){   
+      console.log('21');
       const results_paper = idx_paper.search($('#search_word').val(), function (query) {
         return [query.term];
       });
       results_paper.forEach(function (row) {
-        console.log('4');
+        console.log('22');
         $("[data-rowno_paper=" + row["ref"] + "]").show();
         $("[data-rowno_paper=" + row["ref"] + "]").parents(":hidden").show();
       });
     };
 
     function search_patent(){   
+      console.log('11');
       const results_patent = idx_patent.search($('#search_word').val(), function (query) {
         return [query.term];
       });
       results_patent.forEach(function (row) {
-        console.log('5');
+        console.log('12');
         $("[data-rowno_patent=" + row["ref"] + "]").show();
         $("[data-rowno_patent=" + row["ref"] + "]").parents(":hidden").show();
       });
