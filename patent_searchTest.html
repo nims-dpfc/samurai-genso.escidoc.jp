@@ -14,7 +14,9 @@ title: 特許の一覧
   {% if year != rowYear -%}
     {% if forloop.first != true -%}
       </ul>
+      </div>
     {% endif -%}
+    <div>
     <h3 class="year-subject">{{rowYear}}</h3>
     <ul class="list">
     {% assign year = rowYear -%}
@@ -51,7 +53,8 @@ title: 特許の一覧
         {% endif -%}
       </li>
 {% endfor -%}
-    </ul>            
+    </ul>
+            </div>
           </div>    
         </section>
       </div>
