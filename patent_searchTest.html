@@ -92,16 +92,16 @@ title: 特許の一覧
           this.add(doc);
         }, this);
       });
-
-      $(document).ready(function(){
-        $("h3.year-subject").hide();
-        $("ul.list li").hide();
-        const results = idx.search('高橋'); //検索ワード
-        results.forEach(function (row) {
-          $("[data-rowno=" + row["ref"] + "]").parent().parent().children("h3.year-subject").show();
-          $("[data-rowno=" + row["ref"] + "]").show();
-        });
-      };
     });
+
+    function search() {
+      $("h3.year-subject").hide();
+      $("ul.list li").hide();
+      const results = idx.search('高橋'); //検索ワード
+      results.forEach(function (row) {
+        $("[data-rowno=" + row["ref"] + "]").parent().parent().children("h3.year-subject").show();
+        $("[data-rowno=" + row["ref"] + "]").show();
+      });
+    };
   });
 </script>
