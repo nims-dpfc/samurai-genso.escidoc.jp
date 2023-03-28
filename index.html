@@ -66,7 +66,7 @@ layout: default
       {% else -%}
         {{row.Author}}
       {% endif -%}
-      . {{row.Title}}. {{row.PublicationMedia}}. {% raw -%}({% endraw -%}{{row_PubYear}}{% raw -%}){% endraw -%} - 
+      . {{row.Title}}. {{row.PublicationMedia}}. {% raw -%}({% endraw -%}{{row.PublicationDate | slice: 0,4}}{% raw -%}){% endraw -%} - 
       {% if row.DOI | size > 0  -%}        
         <a href="https://doi.org/{{row.DOI}}" target="_blank">{{row.DOI}}</a>
       {% endif -%}
