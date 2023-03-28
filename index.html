@@ -62,7 +62,7 @@ layout: default
     <ul class="list">
     {% assign year = row_PubYear -%}
   {% endif -%}
-    <li data-rowno_paper="{{row.No}}" {% if forloop.index > 10 -%} style="display: none;{%- endif %}">
+    <li data-rowno_paper="{{row.No}}" {% if forloop.index > 10 -%} style="display: none;"{%- endif %}>
       {% if row.SamuraiLink -%}
         {% assign AuthorArray = row.Author | split: ","-%}
         {% assign LinkArray = row.SamuraiLink | split: ","-%}
