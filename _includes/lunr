@@ -1,0 +1,35 @@
+    require(['assets/js/lunr-languages/test/lunr/lunr-0.7.0.min.js', 'assets/js/lunr-languages/lunr.stemmer.support.js', 'assets/js/lunr-languages/tinyseg.js', 'assets/js/lunr-languages/lunr.ja.js'], function (lunr, stemmerSupport, TinySegmenter, ja) {
+      // since the `stemmerSupport` and `ja` add keys on the lunr object, we'll pass it as reference to them
+      // in the end, we will only need `lunr`.
+      stemmerSupport(lunr); // adds `lunr.stemmerSupport`
+      TinySegmenter(lunr);
+      ja(lunr); // adds `lunr.ja` key
+      // at this point, `lunr` can be used
+      idx = lunr(function () {
+        // use the language (ja)
+        this.use(lunr.ja);
+        this.tokenizer = function (str) {
+            return [str];
+        };
+        // then, the normal lunr index initialization
+        this.ref('No')
+        this.field('Title')
+        this.field('Name')
+        /* add documents to index */
+        documents.forEach(function (doc) {
+          this.add(doc);
+        }, this);
+      });
+    });
+
+    $(".btn").on('click', function() {
+      $("div.filterBlock").hide();
+      $("ul.list li").hide();
+      const results = idx.search($('#search_word').val(), function (query) {
+        return [query.term];
+      });
+      results.forEach(function (row) {
+        $("[data-rowno=" + row["ref"] + "]").show();
+        $("[data-rowno=" + row["ref"] + "]").parents(":hidden").show();
+      });
+    });
