@@ -49,7 +49,7 @@ layout: default
 </h2>
 {% assign year = 0 -%}
 {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "PublicationDate" | reverse -%}
-{% for row in SAMURAI_paper_sort limit:10 -%}
+{% for row in SAMURAI_paper_sort -%}
   {% assign row_PubYear = row.PublicationDate | slice: 0,4 -%}
   {% if year != row_PubYear -%}
     {% if forloop.first != true -%}
@@ -62,7 +62,7 @@ layout: default
     <ul class="list">
     {% assign year = row_PubYear -%}
   {% endif -%}
-    <li data-rowno_paper="{{row.No}}">
+    <li data-rowno_paper="{{row.No}}" {% if forloop.index > 10 -%} style="display: none;{%- endif %}">
       {% if row.SamuraiLink -%}
         {% assign AuthorArray = row.Author | split: ","-%}
         {% assign LinkArray = row.SamuraiLink | split: ","-%}
@@ -240,7 +240,6 @@ layout: default
         $("[data-rowno_paper=" + row["ref"] + "]").parent().siblings('h4.data-type').show();
         $("[data-rowno_paper=" + row["ref"] + "]").parents(":hidden").show();
       });
-      console.log('paper: ', results_paper.length);
       return results_paper.length;
     };
 
@@ -254,7 +253,6 @@ layout: default
         $("[data-rowno_patent=" + row["ref"] + "]").parent().siblings('h4.data-type').show();
         $("[data-rowno_patent=" + row["ref"] + "]").parents(":hidden").show();
       });
-      console.log('patent: ', results_patent.length);
       return results_patent.length;
     };
        
