@@ -40,7 +40,7 @@ layout: default
 </section>
 <section class="home area1 articles">
 <div class="main_inner paper_list">
-<h2 class="result-summary"></h2>
+<h2 class="result-summary" style="display: none;"></h2>
 <div class="row">
 <div class="col-md-9">
 <div class="list-panel paper">
@@ -276,7 +276,8 @@ layout: default
       $('section.home').css('padding', '0');
       $('div.search_block').css('width', 'auto');
       $('div.search_block').css('width', 'auto');
-      
+      $('h2.result-summary').show();
+     
       const search_word = $('#search_word').val();
 
       switch($('#search-type').val()){
