@@ -71,7 +71,7 @@ title: 論文の一覧
     const documents = [
       {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "FilingDate" | reverse -%}
       {% for row in SAMURAI_paper_sort -%}
-      { 'No': '{{ row.No }}', 'Title': '{{ row.Title }}', 'Author': '{{ row.Author }}', 'SamuraiLink': '{{ row.SamuraiLink }}', 'PublicationMedia': '{{row.PublicationMedia}}', 'FilingDate': '{{ row.PublicationDate }}', 'DOI': '{{ row.DOI }}' },
+      { 'No': '{{ row.No }}', 'Title': '{{ row.Title }}', 'Author': '{{ row.Author }}' },
       {% endfor -%}
     ];
 
