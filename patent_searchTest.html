@@ -89,19 +89,20 @@ title: 特許の一覧
       idx = lunr(function () {
         // use the language (ja)
         this.use(lunr.ja);
+        this.tokenizer = function (str) {
+            return [str];
+        };
         // then, the normal lunr index initialization
         this.ref('No')
         this.field('PublicationNo')
         this.field('Title')
         this.field('Inventor')
-        this.tokenizer = function (str) {
-            return [str];
-        };
         /* add documents to index */
         documents.forEach(function (doc) {
           this.add(doc);
         }, this);
       });
+      console.log('idx:',idx);
     });
 
     $(".btn").on('click', function() {
