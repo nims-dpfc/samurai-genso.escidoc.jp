@@ -19,7 +19,7 @@ title: 特許の一覧
     <ul class="list">
     {% assign year = rowYear -%}
   {% endif -%}
-      <li data-rowNo="{{row.No}}">
+      <li data-rowno="{{row.No}}">
         {% if row.PublicationNo contains "特開" -%}
           <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 2,4}}{{row.PublicationNo | slice: 7,6}}" target="_blank">
         {% else -%}
@@ -91,14 +91,15 @@ title: 特許の一覧
           }, this);
       });
       
-      console.log('Search for `aa`: ', idx.search('aa'));
-      console.log('Search for `*aa`: ', idx.search('*aa'));
       console.log('Search for `特開`: ', idx.search('特開'));
-      console.log('Search for `特開*`: ', idx.search('特開*'));
-      console.log('Search for `*特開*`: ', idx.search('*特開*'));
-      console.log('Search for `A`: ', idx.search('A'));
-      console.log('Search for `*A*`: ', idx.search('*A*'));
       console.log('Search for `*磁性化合物*`: ', idx.search('*磁性化合物*'));
-      console.log(idx);
+      
+      function search(){
+        const results = idx.search('製造'); //検索ボックスの引数に修正
+        results.forEach(row){
+          console.log('result:'row[No]);
+        }
+      }
+      search();
   });
 </script>
