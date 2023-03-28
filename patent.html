@@ -6,7 +6,14 @@ title: 特許の一覧
       <div class="main_frame clearfix">
         <section class="contents articles">
           <h2 class="pagetitle">{{ page.title }}</h2>
+          <p class="txt text-right">最終更新時刻: 2023年03月31日</p>
           <div class="paper_list">
+            <div id="search_keyword">
+              <div class="search_block row">
+                <input type="search" name="q" id="search_word" value="" class="col-md-10 txt_input txt_result" placeholder="">
+                <input type="submit" name="commit" value="検索する" class="btn" data-disable-with="検索する">
+              </div>
+            </div>
 {% assign year = 0 -%}
 {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
 {% for row in SAMURAI_patent_sort -%}
@@ -82,6 +89,9 @@ title: 特許の一覧
       idx = lunr(function () {
         // use the language (ja)
         this.use(lunr.ja);
+        this.tokenizer = function (str) {
+            return [str];
+        };
         // then, the normal lunr index initialization
         this.ref('No')
         this.field('PublicationNo')
@@ -92,16 +102,19 @@ title: 特許の一覧
           this.add(doc);
         }, this);
       });
+      console.log('idx:',idx);
+    });
+
+    $(".btn").on('click', function() {
+      $("div.filterBlock").hide();
+      $("ul.list li").hide();
+      const results = idx.search($('#search_word').val(), function (query) {
+        return [query.term];
+      });
+      results.forEach(function (row) {
+        $("[data-rowno=" + row["ref"] + "]").show();
+        $("[data-rowno=" + row["ref"] + "]").parents(":hidden").show();
+      });
     });
   });
-
-  function filterExec() {
-    $("div.filterBlock").hide();
-    $("ul.list li").hide();
-    const results = idx.search('高橋'); //検索ワード
-    results.forEach(function (row) {
-      $("[data-rowno=" + row["ref"] + "]").show();
-      $("[data-rowno=" + row["ref"] + "]").parents(":hidden").show();
-    });
-  };
 </script>
