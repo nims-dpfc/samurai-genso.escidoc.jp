@@ -64,14 +64,15 @@ title: 特許の一覧
       </div>
     </article>
 <script>
-   const documents = [
-  {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
-  {% for row in SAMURAI_patent_sort -%}
-    {'No': '{{row.No}}','PublicationNo': '{{row.PublicationNo}}', 'Title': '{{row.Title}}', 'Inventor': '{{row.Inventor}}', 'Link': '{{row.Link}}', 'FilingDate': '{{row.FilingDate}}' },
-  {% endfor -%}
-  ];
+  $function(){
+    const documents = [
+      {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
+      {% for row in SAMURAI_patent_sort -%}
+      { 'No': '{{ row.No }}', 'PublicationNo': '{{ row.PublicationNo }}', 'Title': '{{ row.Title }}', 'Inventor': '{{ row.Inventor }}', 'Link': '{{ row.Link }}', 'FilingDate': '{{ row.FilingDate }}' },
+      {% endfor -%}
+    ];
 
-  require(['assets/js/lunr-languages/test/lunr/lunr-0.7.0.min.js', 'assets/js/lunr-languages/lunr.stemmer.support.js', 'assets/js/lunr-languages/tinyseg.js', 'assets/js/lunr-languages/lunr.ja.js'], function(lunr, stemmerSupport,TinySegmenter, ja) {
+    require(['assets/js/lunr-languages/test/lunr/lunr-0.7.0.min.js', 'assets/js/lunr-languages/lunr.stemmer.support.js', 'assets/js/lunr-languages/tinyseg.js', 'assets/js/lunr-languages/lunr.ja.js'], function (lunr, stemmerSupport, TinySegmenter, ja) {
       // since the `stemmerSupport` and `ja` add keys on the lunr object, we'll pass it as reference to them
       // in the end, we will only need `lunr`.
       stemmerSupport(lunr); // adds `lunr.stemmerSupport`
@@ -79,32 +80,28 @@ title: 特許の一覧
       ja(lunr); // adds `lunr.ja` key
       // at this point, `lunr` can be used
       var idx = lunr(function () {
-          // use the language (ja)
-          this.use(lunr.ja);
-          // then, the normal lunr index initialization
-          this.ref('No')
-          this.field('PublicationNo')
-          this.field('Title')
-          this.field('Inventor')
-          this.field('Link')
-          this.field('FilingDate')
-          /* add documents to index */
-          documents.forEach(function (doc) {
-            this.add(doc);
-          }, this);
+        // use the language (ja)
+        this.use(lunr.ja);
+        // then, the normal lunr index initialization
+        this.ref('No')
+        this.field('PublicationNo')
+        this.field('Title')
+        this.field('Inventor')
+        /* add documents to index */
+        documents.forEach(function (doc) {
+          this.add(doc);
+        }, this);
       });
-      
-      console.log('Search for `特開`: ', idx.search('特開'));
-      console.log('Search for `*磁性化合物*`: ', idx.search('*磁性化合物*'));
-      
-      function search(){
+
+      function search() {
         $("h3.year-subject").hide();
         $("ul.list li").hide();
-        const results = idx.search('高橋');
-        results.forEach(function (row){
-            $("[data-rowno=" + row["ref"] +"]").parent().parent().children("h3.year-subject").show();
-            $("[data-rowno=" + row["ref"] +"]").show();
+        const results = idx.search('高橋'); //検索ワード
+        results.forEach(function (row) {
+          $("[data-rowno=" + row["ref"] + "]").parent().parent().children("h3.year-subject").show();
+          $("[data-rowno=" + row["ref"] + "]").show();
         });
       };
-  });
+    });
+  };
 </script>
