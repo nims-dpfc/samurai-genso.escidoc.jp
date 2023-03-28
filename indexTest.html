@@ -5,7 +5,7 @@ layout: default
 <article class="wrap home">
 <div class="clearfix" id="main_frame">
 <section class="contents articles" style="display: none;">
-<h2 class="pagetitle">論文・特許の一覧</h2>
+<h2 class="pagetitle"></h2>
 <p class="txt text-right">最終更新時刻: 2023年03月31日</p>
 </section>
 <section class="search">
@@ -241,18 +241,19 @@ layout: default
 
       switch($('#search-type').val()){
         case "":
+          $('h2.pagetitle').text('論文・特許の一覧');
           console.log('1');
           break;
         case "paper":
+          $('h2.pagetitle').text('論文の一覧');
           console.log('2');
           break;
         case "patent":
+          $('h2.pagetitle').text('特許の一覧');
           console.log('3');
           break;
       }
       
-      //      $("div.filterBlock").hide();
-//      $("ul.list li").hide();
 //      const results = idx.search($('#search_word').val(), function (query) {
 //        return [query.term];
 //      });
