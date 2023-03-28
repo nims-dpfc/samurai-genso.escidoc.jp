@@ -3,7 +3,7 @@ layout: default
 ---
 
 <article class="wrap home">
-<div class="main_frame clearfix">
+<div class="clearfix" id="main_frame">
 <section class="contents articles" style="display: none;">
 <h2 class="pagetitle">論文・特許の一覧</h2>
 <p class="txt text-right">最終更新時刻: 2023年03月31日</p>
@@ -234,7 +234,8 @@ layout: default
       $('div.main_inner div.row div.col-md-9').css('max-width','100%');
       $('div.main_inner div.row').css('display','block');
       $('.wrap .area1').css('background','white');
-      $('article.wrap div.main_frame').css('display','block');
+      $('div.main_frame section.contents').css('display','block');
+      $('#main_frame').addClass('main_frame');
       $("div.filterBlock").hide();
       $("ul.list li").hide();
 
