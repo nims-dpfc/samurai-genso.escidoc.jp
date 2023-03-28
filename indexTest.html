@@ -221,7 +221,8 @@ layout: default
       });
     });
 
-//    $(".btn").on('click', function() {
+    $(".btn").on('click', function() {
+      console.log($('#search-type').val());
 //      $("div.filterBlock").hide();
 //      $("ul.list li").hide();
 //      const results = idx.search($('#search_word').val(), function (query) {
@@ -231,6 +232,6 @@ layout: default
 //        $("[data-rowno=" + row["ref"] + "]").show();
 //        $("[data-rowno=" + row["ref"] + "]").parents(":hidden").show();
 //      });
-//    });
+    });
   });
 </script>
