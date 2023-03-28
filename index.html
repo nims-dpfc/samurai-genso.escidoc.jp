@@ -80,8 +80,41 @@ layout: default
 <span class="date">更新日： 2023年03月31日 </span>
 </h2>
 <ul class="list">
-  <li>
-  </li>
+{% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
+{% for row in SAMURAI_patent_sort limit:10 -%}
+  {% assign rowYear = row.FilingDate | slice: 0, 4 -%}
+      <li data-rowno="{{row.No}}">
+        {% if row.PublicationNo contains "特開" -%}
+          <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 2,4}}{{row.PublicationNo | slice: 7,6}}" target="_blank">
+        {% else -%}
+          <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 0,6}}{{row.PublicationNo | slice: 7,6}}" target="_blank">
+        {% endif -%}
+        {{row.PublicationNo}}</a>&nbsp;
+        {{row.Title}}&nbsp;
+        {% if row.Link -%}
+          {% assign InventorArray = row.Inventor | split: ","-%}
+          {% assign LinkArray = row.Link | split: ","-%}
+          {% for name_Inventor in InventorArray -%}
+            {% assign linkFlag = false -%}
+            {% for name_Link in LinkArray -%}
+              {% if name_Link == name_Inventor -%}
+                {% assign linkFlag = true -%}
+                <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Inventor }}</a>
+              {% endif -%}
+            {% endfor -%}
+            {% if linkFlag != true -%}
+              {{ name_Inventor }}
+            {% endif -%}
+            {% if forloop.last != true -%}
+              ,
+            {% endif -%}
+          {% endfor -%}
+          &nbsp;
+        {% else -%}
+          {{row.Inventor}}&nbsp;      
+        {% endif -%}
+      </li>
+{% endfor -%}
 </ul>
 <p class="past"><a href="patent">一覧でさらに表示する</a></p>
 </div>
