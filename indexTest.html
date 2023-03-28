@@ -5,7 +5,7 @@ layout: default
 <article class="wrap home">
   <section class="search">
 <div class="search_block">
-<form action="/profiles" accept-charset="UTF-8" method="get" class="form-inline row">
+<div class="form-inline row">
 <div class="form-group col-md-9">
 <input type="search" name="q" id="search_form_top" value="" class="txt_input" placeholder="登録されているデータをキーワードで検索します" />
 </div>
@@ -30,7 +30,7 @@ layout: default
 <div class="form-group submit">
 <input type="submit" name="commit" value="検索する" class="btn" data-disable-with="検索する" />
 </div>
-</form>
+</div>
 </div>
 </section>
 <section class="home area1">
@@ -223,7 +223,9 @@ layout: default
 
     $(".btn").on('click', function() {
       console.log($('#search-type').val());
-//      $("div.filterBlock").hide();
+      
+      
+      //      $("div.filterBlock").hide();
 //      $("ul.list li").hide();
 //      const results = idx.search($('#search_word').val(), function (query) {
 //        return [query.term];
