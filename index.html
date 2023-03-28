@@ -3,11 +3,16 @@ layout: default
 ---
 
 <article class="wrap home">
-  <section class="search">
+<div class="clearfix" id="main_frame">
+<section class="contents articles" style="display: none;">
+<h2 class="pagetitle"></h2>
+<p class="txt text-right">最終更新時刻: 2023年03月31日</p>
+</section>
+<section class="search">
 <div class="search_block">
-<form action="/profiles" accept-charset="UTF-8" method="get" class="form-inline row">
+<div class="form-inline row">
 <div class="form-group col-md-9">
-<input type="search" name="q" id="search_form_top" value="" class="txt_input" placeholder="登録されているデータをキーワードで検索します" />
+<input type="search" name="q" id="search_word" value="" class="txt_input" placeholder="登録されているデータをキーワードで検索します" />
 </div>
 <div class="form-group mr-2">
 <label>種類</label>
@@ -30,21 +35,34 @@ layout: default
 <div class="form-group submit">
 <input type="submit" name="commit" value="検索する" class="btn" data-disable-with="検索する" />
 </div>
-</form>
+</div>
 </div>
 </section>
-<section class="home area1">
-<div class="main_inner">
+<section class="home area1 articles">
+<div class="main_inner paper_list">
+<h2 class="result-summary" style="display: none;"></h2>
 <div class="row">
 <div class="col-md-9">
 <div class="list-panel paper">
 <h2 class="title">新着論文
 <span class="date">更新日： 2023年03月31日 </span>
 </h2>
-<ul class="list">
+{% assign year = 0 -%}
 {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "PublicationDate" | reverse -%}
 {% for row in SAMURAI_paper_sort limit:10 -%}
-    <li data-rowno="{{row.No}}">
+  {% assign row_PubYear = row.PublicationDate | slice: 0,4 -%}
+  {% if year != row_PubYear -%}
+    {% if forloop.first != true -%}
+      </ul>
+      </div>
+    {% endif -%}
+    <div class="filterBlock">
+    <h3 class="year-subject" style="display: none;">{{row_PubYear}}</h3>
+    <h4 class="data-type" style="display: none;">論文</h4>
+    <ul class="list">
+    {% assign year = row_PubYear -%}
+  {% endif -%}
+    <li data-rowno_paper="{{row.No}}">
       {% if row.SamuraiLink -%}
         {% assign AuthorArray = row.Author | split: ","-%}
         {% assign LinkArray = row.SamuraiLink | split: ","-%}
@@ -66,24 +84,36 @@ layout: default
       {% else -%}
         {{row.Author}}
       {% endif -%}
-      . {{row.Title}}. {{row.PublicationMedia}}. {% raw -%}({% endraw -%}{{row.PublicationDate | slice: 0,4}}{% raw -%}){% endraw -%} - 
+      . {{row.Title}}. {{row.PublicationMedia}}. {% raw -%}({% endraw -%}{{row_PubYear}}{% raw -%}){% endraw -%} - 
       {% if row.DOI | size > 0  -%}        
         <a href="https://doi.org/{{row.DOI}}" target="_blank">{{row.DOI}}</a>
       {% endif -%}
     </li>
 {% endfor -%}
-</ul>
-<p class="past"><a href="paper">一覧でさらに表示する</a></p>
+    </ul>
+  </div> 
+  <p class="past"><a href="paper">一覧でさらに表示する</a></p>
 </div>
 <div class="list-panel patent">
 <h2 class="title">新着特許
 <span class="date">更新日： 2023年03月31日 </span>
 </h2>
-<ul class="list">
+{% assign year = 0 -%}
 {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
 {% for row in SAMURAI_patent_sort limit:10 -%}
   {% assign rowYear = row.FilingDate | slice: 0, 4 -%}
-      <li data-rowno="{{row.No}}">
+  {% if year != rowYear -%}
+    {% if forloop.first != true -%}
+      </ul>
+      </div>
+    {% endif -%}
+    <div class="filterBlock">
+    <h3 class="year-subject" style="display: none;">{{rowYear}}</h3>
+    <h4 class="data-type" style="display: none;">特許</h4>
+    <ul class="list">
+    {% assign year = rowYear -%}
+  {% endif -%}
+      <li data-rowno_patent="{{row.No}}">
         {% if row.PublicationNo contains "特開" -%}
           <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 2,4}}{{row.PublicationNo | slice: 7,6}}" target="_blank">
         {% else -%}
@@ -115,8 +145,9 @@ layout: default
         {% endif -%}
       </li>
 {% endfor -%}
-</ul>
-<p class="past"><a href="patent">一覧でさらに表示する</a></p>
+    </ul>
+  </div>
+  <p class="past"><a href="patent">一覧でさらに表示する</a></p>
 </div>
 </div>
 <div class="col-md-3">
@@ -137,8 +168,138 @@ layout: default
 </div>
 </div>
 </section>
+</div>
 <div id="bnr_link">
 <div class="clearfix">
 </div>
 </div>
 </article>
+<script>
+  $(function () {
+    const documents_paper = [
+      {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "FilingDate" | reverse -%}
+      {% for row in SAMURAI_paper_sort -%}
+      { 'No': '{{ row.No }}', 'Title': '{{ row.Title | escape }}', 'Name': '{{ row.Author | escape }}' },
+      {% endfor -%}
+    ];
+
+    const documents_patent = [
+      {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
+      {% for row in SAMURAI_patent_sort -%}
+      { 'No': '{{ row.No }}', 'Title': '{{ row.Title | escape }}', 'Name': '{{ row.Inventor | escape }}' },
+      {% endfor -%}
+    ];
+
+    require(['assets/js/lunr-languages/test/lunr/lunr-0.7.0.min.js', 'assets/js/lunr-languages/lunr.stemmer.support.js', 'assets/js/lunr-languages/tinyseg.js', 'assets/js/lunr-languages/lunr.ja.js'], function (lunr, stemmerSupport, TinySegmenter, ja) {
+      // since the `stemmerSupport` and `ja` add keys on the lunr object, we'll pass it as reference to them
+      // in the end, we will only need `lunr`.
+      stemmerSupport(lunr); // adds `lunr.stemmerSupport`
+      TinySegmenter(lunr);
+      ja(lunr); // adds `lunr.ja` key
+      // at this point, `lunr` can be used
+      idx_paper = lunr(function () {
+        // use the language (ja)
+        this.use(lunr.ja);
+        this.tokenizer = function (str) {
+            return [str];
+        };
+        // then, the normal lunr index initialization
+        this.ref('No')
+        this.field('Title')
+        this.field('Name')
+        /* add documents to index */
+        documents_paper.forEach(function (doc) {
+          this.add(doc);
+        }, this);
+      });
+
+      idx_patent = lunr(function () {
+        // use the language (ja)
+        this.use(lunr.ja);
+        this.tokenizer = function (str) {
+            return [str];
+        };
+        // then, the normal lunr index initialization
+        this.ref('No')
+        this.field('Title')
+        this.field('Name')
+        /* add documents to index */
+        documents_patent.forEach(function (doc) {
+          this.add(doc);
+        }, this);
+      });
+    });
+
+    function search_paper(word_paper){   
+      const results_paper = idx_paper.search(word_paper, function (query) {
+        return [query.term];
+      });
+      results_paper.forEach(function (row) {
+        $("[data-rowno_paper=" + row["ref"] + "]").show();
+        $("[data-rowno_paper=" + row["ref"] + "]").parent().siblings('h3.year-subject').show();
+        $("[data-rowno_paper=" + row["ref"] + "]").parent().siblings('h4.data-type').show();
+        $("[data-rowno_paper=" + row["ref"] + "]").parents(":hidden").show();
+      });
+      console.log('paper: ', results_paper.length);
+      return results_paper.length;
+    };
+
+    function search_patent(word_patent){
+      const results_patent = idx_patent.search(word_patent, function (query) {
+        return [query.term];
+      });
+      results_patent.forEach(function (row) {
+        $("[data-rowno_patent=" + row["ref"] + "]").show();
+        $("[data-rowno_patent=" + row["ref"] + "]").parent().siblings('h3.year-subject').show();
+        $("[data-rowno_patent=" + row["ref"] + "]").parent().siblings('h4.data-type').show();
+        $("[data-rowno_patent=" + row["ref"] + "]").parents(":hidden").show();
+      });
+      console.log('patent: ', results_patent.length);
+      return results_patent.length;
+    };
+       
+    $(".btn").on('click', function() {
+      $('h2.title').hide();
+      $('p.past').hide();
+      $('div.col-md-3').hide();
+      $('h3.year-subject').hide();
+      $('h4.data-type').hide();
+      $('div.main_inner div.row div.col-md-9').css('max-width','100%');
+      $('div.main_inner').css('width','auto');
+      $('div.main_inner div.row').css('display','block');
+      $('.wrap .area1').css('background','white');
+      $('#main_frame').addClass('main_frame');
+      $('div.main_frame section.contents').css('display','block');
+      $("div.filterBlock").hide();
+      $("ul.list li").hide();
+      $('section.search').css('padding','0 0 25px 0');
+      $('section.home').css('padding', '0');
+      $('div.search_block').css('width', 'auto');
+      $('div.search_block').css('width', 'auto');
+      $('h2.result-summary').show();
+     
+      const search_word = $('#search_word').val();
+
+      switch($('#search-type').val()){
+        case "":
+          $('h2.pagetitle').text('論文・特許の一覧');
+          var paper_length = search_paper(search_word);
+          var patent_length = search_patent(search_word);
+          $('h2.result-summary').text(paper_length + patent_length + "件の論文・特許が見つかりました。 論文・特許は論文は出版年月日、特許は出願年月日順に表示しています。");
+          break;
+        case "paper":
+          $('h2.pagetitle').text('論文の一覧');
+          var paper_length = search_paper(search_word);
+          $('h2.result-summary').text(paper_length + "件の論文が見つかりました。 論文は出版年月日順に表示しています。");
+          $('h4.data-type').hide();
+          break;
+        case "patent":
+          $('h2.pagetitle').text('特許の一覧');
+          var patent_length = search_patent(search_word);
+          $('h2.result-summary').text(patent_length + "件の特許が見つかりました。 特許は出願年月日順に表示しています。");
+          $('h4.data-type').hide();
+          break;
+      };
+    });
+  });       
+</script>
