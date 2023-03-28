@@ -95,21 +95,16 @@ title: 特許の一覧
       console.log('Search for `*磁性化合物*`: ', idx.search('*磁性化合物*'));
       
       function search(){
-        const results = idx.search('製造'); //検索ボックスの引数に修正
+        $("h3.year-subject").hide();
+        $("ul.list li").hide();
+        const results = idx.search('高橋');
         results.forEach(function (row){
-          console.log('result:', row["ref"]);
+            $("[data-rowno=" + row["ref"] +"]").parent().parent().children("h3.year-subject").show();
+            $("[data-rowno=" + row["ref"] +"]").show();
         });
       };
       
     $(document).ready(function(){
-        $("h3").hide();
-        $("ul.list li").hide();
-        const results = idx.search('高橋');
-        results.forEach(function (row){
-            $("[data-rowno='3']").show();
-            $("[data-rowno=" + row["ref"] +"]").closest(":hidden").show();
-            $("[data-rowno=" + row["ref"] +"]").show();
-        });
     });
   });
 </script>
