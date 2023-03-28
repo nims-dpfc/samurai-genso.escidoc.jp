@@ -94,6 +94,9 @@ title: 特許の一覧
         this.field('PublicationNo')
         this.field('Title')
         this.field('Inventor')
+        this.tokenizer = function (str) {
+            return [str];
+        };
         /* add documents to index */
         documents.forEach(function (doc) {
           this.add(doc);
