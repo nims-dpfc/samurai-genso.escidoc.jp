@@ -101,7 +101,7 @@ title: 特許の一覧
     const results = idx.search('高橋'); //検索ワード
     results.forEach(function (row) {
       $("[data-rowno=" + row["ref"] + "]").show();
-      $("[data-rowno=" + row["ref"] + "]").closest(":hidden").show();;
+      $("[data-rowno=" + row["ref"] + "]").parents(":hidden").show();
     });
   };
 </script>
