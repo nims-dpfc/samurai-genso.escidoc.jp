@@ -227,6 +227,26 @@ layout: default
       });
     });
 
+    function search_paper(){   
+      const results_paper = idx_paper.search($('#search_word').val(), function (query) {
+        return [query.term];
+      });
+      results_paper.forEach(function (row) {
+        $("[data-rowno_paper=" + row["ref"] + "]").show();
+        $("[data-rowno_paper=" + row["ref"] + "]").parents(":hidden").show();
+      });
+    };
+
+    function search_patent(){   
+      const results_patent = idx_patent.search($('#search_word').val(), function (query) {
+        return [query.term];
+      });
+      results_patent.forEach(function (row) {
+        $("[data-rowno_patent=" + row["ref"] + "]").show();
+        $("[data-rowno_patent=" + row["ref"] + "]").parents(":hidden").show();
+      });
+    };
+       
     $(".btn").on('click', function() {
       $('h2.title').hide();
       $('p.past').hide();
@@ -243,50 +263,16 @@ layout: default
         case "":
           console.log('1');
           $('h2.pagetitle').text('論文・特許の一覧');
-          const results_paper = idx_paper.search($('#search_word').val(), function (query) {
-            return [query.term];
-          });
-          results_paper.forEach(function (row) {
-            $("[data-rowno_paper=" + row["ref"] + "]").show();
-            $("[data-rowno_paper=" + row["ref"] + "]").parents(":hidden").show();
-          });
-          const results_patent = idx_patent.search($('#search_word').val(), function (query) {
-            return [query.term];
-          });
-          results_patent.forEach(function (row) {
-            $("[data-rowno_patent=" + row["ref"] + "]").show();
-            $("[data-rowno_patent=" + row["ref"] + "]").parents(":hidden").show();
-          });
-
           break;
         case "paper":
           console.log('2');
           $('h2.pagetitle').text('論文の一覧');
-          const results_paper = idx_paper.search($('#search_word').val(), function (query) {
-            return [query.term];
-          });
-          results_paper.forEach(function (row) {
-            $("[data-rowno_paper=" + row["ref"] + "]").show();
-            $("[data-rowno_paper=" + row["ref"] + "]").parents(":hidden").show();
-          });
           break;
         case "patent":
           console.log('3');
           $('h2.pagetitle').text('特許の一覧');
-          const results_patent = idx_patent.search($('#search_word').val(), function (query) {
-            return [query.term];
-          });
-          results_patent.forEach(function (row) {
-            $("[data-rowno_patent=" + row["ref"] + "]").show();
-            $("[data-rowno_patent=" + row["ref"] + "]").parents(":hidden").show();
-          });
           break;
-      }
-      
-//      results.forEach(function (row) {
-//        $("[data-rowno=" + row["ref"] + "]").show();
-//        $("[data-rowno=" + row["ref"] + "]").parents(":hidden").show();
-//      });
+      });
     });
-  });
+  });       
 </script>
