@@ -229,6 +229,8 @@ layout: default
 
     function search_paper(){   
       console.log('11');
+      console.log($('#search_word').val());
+      console.log(idx_paper.search($('#search_word').val()));
       const results_paper = idx_paper.search($('#search_word').val(), function (query) {
         return [query.term];
       });
