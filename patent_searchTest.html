@@ -102,6 +102,10 @@ title: 特許の一覧
     });
   });
 
+  $(".class").on('click', function() {
+    console.log($('#search_word').val());
+  })
+
   function filterExec() {
     $("div.filterBlock").hide();
     $("ul.list li").hide();
