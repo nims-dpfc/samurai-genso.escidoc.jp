@@ -43,7 +43,7 @@ layout: default
 </h2>
 {% assign year = 0 -%}
 {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "PublicationDate" | reverse -%}
-{% for row in SAMURAI_paper_sort (1..10) -%}
+{% for row in SAMURAI_paper_sort limit:10 -%}
   {% assign row_PubYear = row.PublicationDate | slice: 0,4 -%}
   {% if year != row_PubYear -%}
     {% if forloop.first != true -%}
