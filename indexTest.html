@@ -1,0 +1,144 @@
+---
+layout: default
+---
+
+<article class="wrap home">
+  <section class="search">
+<div class="search_block">
+<form action="/profiles" accept-charset="UTF-8" method="get" class="form-inline row">
+<div class="form-group col-md-9">
+<input type="search" name="q" id="search_form_top" value="" class="txt_input" placeholder="登録されているデータをキーワードで検索します" />
+</div>
+<div class="form-group mr-2">
+<label>種類</label>
+<select class="form-control" id="search-type">
+<option value="">--</option>
+<option value="paper">論文</option>
+<option value="patent">特許</option>
+</select>
+</div>
+<!--
+<div class="form-group">
+<label>検索対象</label>
+<select class="form-control" name="search-field">
+<option value="">--</option>
+<option value="title">タイトル</option>
+<option value="authors">研究者名</option>
+</select>
+</div>
+-->
+<div class="form-group submit">
+<input type="submit" name="commit" value="検索する" class="btn" data-disable-with="検索する" />
+</div>
+</form>
+</div>
+</section>
+<section class="home area1">
+<div class="main_inner">
+<div class="row">
+<div class="col-md-9">
+<div class="list-panel paper">
+<h2 class="title">新着論文
+<span class="date">更新日： 2023年03月31日 </span>
+</h2>
+<ul class="list">
+{% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "PublicationDate" | reverse -%}
+{% for row in SAMURAI_paper_sort limit:10 -%}
+    <li data-rowno="{{row.No}}">
+      {% if row.SamuraiLink -%}
+        {% assign AuthorArray = row.Author | split: ","-%}
+        {% assign LinkArray = row.SamuraiLink | split: ","-%}
+        {% for name_Author in AuthorArray -%}
+          {% assign linkFlag = false -%}
+          {% for name_Link in LinkArray -%}
+            {% if name_Link == name_Author -%}
+              {% assign linkFlag = true -%}
+              <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Author }}</a>
+            {% endif -%}
+          {% endfor -%}
+          {% if linkFlag != true -%}
+            {{ name_Author }}
+          {% endif -%}
+          {% if forloop.last != true -%}
+            ,
+          {% endif -%}
+        {% endfor -%}
+      {% else -%}
+        {{row.Author}}
+      {% endif -%}
+      . {{row.Title}}. {{row.PublicationMedia}}. {% raw -%}({% endraw -%}{{row.PublicationDate | slice: 0,4}}{% raw -%}){% endraw -%} - 
+      {% if row.DOI | size > 0  -%}        
+        <a href="https://doi.org/{{row.DOI}}" target="_blank">{{row.DOI}}</a>
+      {% endif -%}
+    </li>
+{% endfor -%}
+</ul>
+<p class="past"><a href="paper">一覧でさらに表示する</a></p>
+</div>
+<div class="list-panel patent">
+<h2 class="title">新着特許
+<span class="date">更新日： 2023年03月31日 </span>
+</h2>
+<ul class="list">
+{% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
+{% for row in SAMURAI_patent_sort limit:10 -%}
+  {% assign rowYear = row.FilingDate | slice: 0, 4 -%}
+      <li data-rowno="{{row.No}}">
+        {% if row.PublicationNo contains "特開" -%}
+          <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 2,4}}{{row.PublicationNo | slice: 7,6}}" target="_blank">
+        {% else -%}
+          <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 0,6}}{{row.PublicationNo | slice: 7,6}}" target="_blank">
+        {% endif -%}
+        {{row.PublicationNo}}</a>&nbsp;
+        {{row.Title}}&nbsp;
+        {% if row.Link -%}
+          {% assign InventorArray = row.Inventor | split: ","-%}
+          {% assign LinkArray = row.Link | split: ","-%}
+          {% for name_Inventor in InventorArray -%}
+            {% assign linkFlag = false -%}
+            {% for name_Link in LinkArray -%}
+              {% if name_Link == name_Inventor -%}
+                {% assign linkFlag = true -%}
+                <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Inventor }}</a>
+              {% endif -%}
+            {% endfor -%}
+            {% if linkFlag != true -%}
+              {{ name_Inventor }}
+            {% endif -%}
+            {% if forloop.last != true -%}
+              ,
+            {% endif -%}
+          {% endfor -%}
+          &nbsp;
+        {% else -%}
+          {{row.Inventor}}&nbsp;      
+        {% endif -%}
+      </li>
+{% endfor -%}
+</ul>
+<p class="past"><a href="patent">一覧でさらに表示する</a></p>
+</div>
+</div>
+<div class="col-md-3">
+<div class="list-panel unit-list">
+<h2 class="title">研究グループ</h2>
+<ul class="unit-links">
+        <li><a href="https://www.nims.go.jp/research/functional-materials/" target="_blank"><img alt="機能性材料研究拠点" src="img/機能性材料研究拠点.jpg"><span class="unit-name">機能性材料研究拠点</span></a></li>
+        <li><a href="https://www.nims.go.jp/research/energy-environment/" target="_blank"><img alt="エネルギー・環境材料研究拠点" src="img/エネルギー・環境材料研究拠点.jpg"><span class="unit-name">エネルギー・環境材料研究拠点</span></a></li>
+        <li><a href="https://www.nims.go.jp/research/magnetic-spintronics/" target="_blank"><img alt="磁性・スピントロニクス材料研究拠点" src="img/磁性・スピントロニクス材料拠点.jpg"><span class="unit-name">磁性・スピントロニクス材料研究拠点</span></a></li>
+        <li><a href="https://www.nims.go.jp/research/KO-ZO/" target="_blank"><img alt="構造材料研究拠点" src="img/構造材料研究拠点.jpg"><span class="unit-name">構造材料研究拠点</span></a></li>
+        <li><a href="https://www.nims.go.jp/research/mana/" target="_blank"><img alt="国際ナノアーキテクトニクス研究拠点" src="img/国産ナノアーキテクトニクス研究拠点.jpg"><span class="unit-name">国際ナノアーキテクトニクス研究拠点</span></a></li>
+        <li><a href="https://www.nims.go.jp/research/materials-analysis/" target="_blank"><img alt="先端材料解析研究拠点" src="img/先端材料解析研究拠点.jpg"><span class="unit-name">先端材料解析研究拠点</span></a></li>
+        <li><a href="https://www.nims.go.jp/research/MaDIS/" target="_blank"><img alt="統合型材料開発・情報基盤部門" src="img/統合型材料開発・情報基盤部門.jpg"><span class="unit-name">統合型材料開発・情報基盤部門</span></a></li>
+        <li><a href="https://www.nims.go.jp/research/network-facility-services/" target="_blank"><img alt="技術開発・共用部門" src="img/技術開発・共用部門.jpg"><span class="unit-name">技術開発・共用部門</span></a></li>
+    </ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div id="bnr_link">
+<div class="clearfix">
+</div>
+</div>
+</article>
