@@ -79,7 +79,7 @@ title: 特許の一覧
       TinySegmenter(lunr);
       ja(lunr); // adds `lunr.ja` key
       // at this point, `lunr` can be used
-      var idx = lunr(function () {
+      idx = lunr(function () {
         // use the language (ja)
         this.use(lunr.ja);
         // then, the normal lunr index initialization
@@ -93,15 +93,15 @@ title: 特許の一覧
         }, this);
       });
     });
-
-    function filterExec() {
-      $("h3.year-subject").hide();
-      $("ul.list li").hide();
-      const results = idx.search('高橋'); //検索ワード
-      results.forEach(function (row) {
-        $("[data-rowno=" + row["ref"] + "]").parent().parent().children("h3.year-subject").show();
-        $("[data-rowno=" + row["ref"] + "]").show();
-      });
-    };
   });
+
+  function filterExec() {
+    $("h3.year-subject").hide();
+    $("ul.list li").hide();
+    const results = idx.search('高橋'); //検索ワード
+    results.forEach(function (row) {
+      $("[data-rowno=" + row["ref"] + "]").parent().parent().children("h3.year-subject").show();
+      $("[data-rowno=" + row["ref"] + "]").show();
+    });
+  };
 </script>
