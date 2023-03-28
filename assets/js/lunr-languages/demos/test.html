@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <script src="lib/require.js"></script>
+</head>
+<body>
+    <p>Open developer tools and observe the results in the Console tab. View source for code.</p>
+    <script>
+         const documents = [
+          {'PublicationNo': '特開2020-139183(P2020-139183A)', 'Title': 'ＳｍＺｒＦｅＣｏ磁性化合物およびその製造方法', 'Inventor': '小川大介,ペリン トズマン,高橋有紀子,広沢哲,宝野和博', 'Link': 'aa', 'FilingDate': '2019/2/27 0:00' },
+          {'PublicationNo': '特開2020-113648(P2020-113648A)', 'Title': '希土類磁石、膜、積層体、希土類磁石の製造方法、モータ、発電機、及び、自動車', 'Inventor': '小川大介,高橋有紀子,広沢哲,宝野和博', 'Link': '', 'FilingDate': '2019/1/11 0:00' },
+          {'PublicationNo': 'WO2018/070322', 'Title': '立体物形成指示装置、立体物の製造方法、及びプログラム', 'Inventor': '山崎淳,古宇田光,長代新治,千田範夫,古川祐貴,古賀良太', 'Link': '', 'FilingDate': '2017/10/4 0:00' },
+          {'PublicationNo': '特開2016-042527(P2016-42527A)', 'Title': '希土類異方性磁石材料およびその製造方法', 'Inventor': '平山悠介,高橋有紀子,宝野和博,広沢哲', 'Link': '高橋有紀子,https://samurai.nims.go.jp/profiles/takahashi_yukiko,宝野和博,https://samurai.nims.go.jp/profiles/kazuhiro_hono', 'FilingDate': '2014/8/18 0:00' },
+         ];
+
+        require(['../test/lunr/lunr-0.7.0.min.js', '../lunr.stemmer.support.js', '../tinyseg.js', '../lunr.ja.js'], function(lunr, stemmerSupport, TinySegmenter, ja) {
+            // since the `stemmerSupport` and `ja` add keys on the lunr object, we'll pass it as reference to them
+            // in the end, we will only need `lunr`.
+            stemmerSupport(lunr); // adds `lunr.stemmerSupport`
+            TinySegmenter(lunr);
+            ja(lunr); // adds `lunr.ja` key
+
+            // at this point, `lunr` can be used
+            var idx = lunr(function () {
+                // use the language (ja)
+                this.use(lunr.ja);
+                // then, the normal lunr index initialization
+                this.field('PublicationNo')
+                this.field('Title')
+                this.field('Inventor')
+                this.field('Link')
+                this.field('FilingDate')
+
+                /* add documents to index */
+            documents.forEach(function (doc) {
+              this.add(doc);
+            }, this);
+          });
+
+            console.log('Search for `アナライザー`: ', idx.search('小川大'));
+            console.log('Search for `a`: ', idx.search('a'));
+            console.log('Search for `同義語`: ', idx.search('希土類異方'));
+        });
+    </script>
+</body>
+</html>
