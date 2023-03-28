@@ -64,7 +64,7 @@ title: 特許の一覧
    const documents = [
   {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
   {% for row in SAMURAI_patent_sort -%}
-    {'id': '{{row.No}}','PublicationNo': '{{row.PublicationNo}}', 'Title': '{{row.Title}}', 'Inventor': '{{row.Inventor}}', 'Link': '{{row.Link}}', 'FilingDate': '{{row.FilingDate}}' },
+    {'No': '{{row.No}}','PublicationNo': '{{row.PublicationNo}}', 'Title': '{{row.Title}}', 'Inventor': '{{row.Inventor}}', 'Link': '{{row.Link}}', 'FilingDate': '{{row.FilingDate}}' },
   {% endfor -%}
   ];
 
@@ -79,6 +79,7 @@ title: 特許の一覧
           // use the language (ja)
           this.use(lunr.ja);
           // then, the normal lunr index initialization
+          this.ref('No')
           this.field('PublicationNo')
           this.field('Title')
           this.field('Inventor')
