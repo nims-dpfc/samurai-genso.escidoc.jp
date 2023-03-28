@@ -229,7 +229,7 @@ layout: default
 
     function search_paper(word_paper){   
       console.log('11');
-      console.log(keyword);
+      console.log(word_paper);
       console.log(idx_paper.search(word_paper));
       const results_paper = idx_paper.search(word_paper, function (query) {
         return [query.term];
