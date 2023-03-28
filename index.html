@@ -41,11 +41,51 @@ layout: default
 <h2 class="title">新着論文
 <span class="date">更新日： 2023年03月31日 </span>
 </h2>
-<ul class="list">
-  <li>
-  </li>
-</ul>
-<p class="past"><a href="paper">一覧でさらに表示する</a></p>
+{% assign year = 0 -%}
+{% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "PublicationDate" | reverse -%}
+{% for row in SAMURAI_paper_sort (1..10) -%}
+  {% assign row_PubYear = row.PublicationDate | slice: 0,4 -%}
+  {% if year != row_PubYear -%}
+    {% if forloop.first != true -%}
+      </ul>
+      </div>
+    {% endif -%}
+    <div class="filterBlock">
+    <h3 class="year-subject">{{row_PubYear}}</h3>
+    <ul class="list">
+    {% assign year = row_PubYear -%}
+  {% endif -%}
+    <li data-rowno="{{row.No}}">
+      {% if row.SamuraiLink -%}
+        {% assign AuthorArray = row.Author | split: ","-%}
+        {% assign LinkArray = row.SamuraiLink | split: ","-%}
+        {% for name_Author in AuthorArray -%}
+          {% assign linkFlag = false -%}
+          {% for name_Link in LinkArray -%}
+            {% if name_Link == name_Author -%}
+              {% assign linkFlag = true -%}
+              <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Author }}</a>
+            {% endif -%}
+          {% endfor -%}
+          {% if linkFlag != true -%}
+            {{ name_Author }}
+          {% endif -%}
+          {% if forloop.last != true -%}
+            ,
+          {% endif -%}
+        {% endfor -%}
+      {% else -%}
+        {{row.Author}}
+      {% endif -%}
+      . {{row.Title}}. {{row.PublicationMedia}}. {% raw -%}({% endraw -%}{{row_PubYear}}{% raw -%}){% endraw -%} - 
+      {% if row.DOI | size > 0  -%}        
+        <a href="https://doi.org/{{row.DOI}}" target="_blank">{{row.DOI}}</a>
+      {% endif -%}
+    </li>
+{% endfor -%}
+    </ul>
+            </div>
+            <p class="past"><a href="paper">一覧でさらに表示する</a></p>
 </div>
 <div class="list-panel patent">
 <h2 class="title">新着特許
