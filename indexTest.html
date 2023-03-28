@@ -232,6 +232,7 @@ layout: default
         return [query.term];
       });
       results_paper.forEach(function (row) {
+        console.log('4');
         $("[data-rowno_paper=" + row["ref"] + "]").show();
         $("[data-rowno_paper=" + row["ref"] + "]").parents(":hidden").show();
       });
@@ -242,6 +243,7 @@ layout: default
         return [query.term];
       });
       results_patent.forEach(function (row) {
+        console.log('5');
         $("[data-rowno_patent=" + row["ref"] + "]").show();
         $("[data-rowno_patent=" + row["ref"] + "]").parents(":hidden").show();
       });
