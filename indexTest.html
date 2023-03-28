@@ -38,6 +38,7 @@ layout: default
 </div>
 </div>
 </section>
+<h2 class="result-summary"></h2>
 <section class="home area1 articles">
 <div class="main_inner">
 <div class="row paper_list">
@@ -230,9 +231,6 @@ layout: default
     });
 
     function search_paper(word_paper){   
-      console.log('11');
-      console.log(word_paper);
-      console.log(idx_paper.search(word_paper));
       const results_paper = idx_paper.search(word_paper, function (query) {
         return [query.term];
       });
@@ -248,6 +246,7 @@ layout: default
       const results_patent = idx_patent.search(word_patent, function (query) {
         return [query.term];
       });
+      console.log(results_patent);
       results_patent.forEach(function (row) {
         $("[data-rowno_patent=" + row["ref"] + "]").show();
         $("[data-rowno_patent=" + row["ref"] + "]").parent().siblings('h3.year-subject').show();
