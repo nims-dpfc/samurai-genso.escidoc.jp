@@ -74,6 +74,6 @@ title: 論文の一覧
       { 'No': '{{ row.No }}', 'Title': '{{ row.Title | escape }}', 'Name': '{{ row.Author | escape }}' },
       {% endfor -%}
     ];
-{% include lunr %}
+{% include lunr.html %}
   });
 </script>
