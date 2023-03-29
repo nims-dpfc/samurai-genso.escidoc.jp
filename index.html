@@ -71,7 +71,7 @@ layout: default
           {% assign name_Author_str = name_Author | strip %}
           {% assign linkFlag = false -%}
           {%- for name_Link in LinkArray -%}
-            {% assign name_Link_str in LinkArray | strip %}
+            {% assign name_Link_str in name_Link | strip %}
             {%- if name_Link_str == name_Author_str -%}
               {% assign linkFlag = true -%}
               <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Author }}</a>
