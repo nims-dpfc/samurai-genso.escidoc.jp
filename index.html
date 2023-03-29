@@ -50,47 +50,49 @@ layout: default
 </h2>
 {% assign year = 0 -%}
 {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "PublicationDate" | reverse -%}
-{% for row in SAMURAI_paper_sort -%}
+{%- for row in SAMURAI_paper_sort -%}
   {% assign row_PubYear = row.PublicationDate | slice: 0,4 -%}
-  {% if year != row_PubYear -%}
-    {% if forloop.first != true -%}
+  {%- if year != row_PubYear -%}
+    {%- if forloop.first != true -%}
       </ul>
       </div>
-    {% endif -%}
+    {%- endif -%}
     <div class="filterBlock" style="display: none;">
     <h3 class="year-subject" style="display: none;">{{row_PubYear}}</h3>
     <h4 class="data-type" style="display: none;">論文</h4>
     <ul class="list">
     {% assign year = row_PubYear -%}
-  {% endif -%}
+  {%- endif %}
     <li data-rowno_paper="{{row.No}}" {% if forloop.index > 10 -%} style="display: none;"{%- endif %}>
-      {% if row.SamuraiLink -%}
+      {%- if row.SamuraiLink -%}
         {% assign AuthorArray = row.Author | split: ","-%}
         {% assign LinkArray = row.SamuraiLink | split: ","-%}
-        {% for name_Author in AuthorArray -%}
+        {%- for name_Author in AuthorArray -%}
+          {% assign name_Author_str = name_Author | strip %}
           {% assign linkFlag = false -%}
-          {% for name_Link in LinkArray -%}
-            {% if name_Link == name_Author -%}
+          {%- for name_Link in LinkArray -%}
+            {% assign name_Link_str in LinkArray | strip %}
+            {%- if name_Link_str == name_Author_str -%}
               {% assign linkFlag = true -%}
               <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Author }}</a>
-            {% endif -%}
-          {% endfor -%}
-          {% if linkFlag != true -%}
+            {%- endif -%}
+          {%- endfor -%}
+          {%- if linkFlag != true -%}
             {{ name_Author }}
-          {% endif -%}
-          {% if forloop.last != true -%}
+          {%- endif -%}
+          {%- if forloop.last != true -%}
             ,
-          {% endif -%}
-        {% endfor -%}
-      {% else -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
         {{row.Author}}
-      {% endif -%}
+      {%- endif -%}
       . {{row.Title}}. {{row.PublicationMedia}}. {% raw -%}({% endraw -%}{{row_PubYear}}{% raw -%}){% endraw -%} - 
-      {% if row.DOI | size > 0  -%}        
+      {%- if row.DOI | size > 0  -%}        
         <a href="https://doi.org/{{row.DOI}}" target="_blank">{{row.DOI}}</a>
-      {% endif -%}
+      {%- endif -%}
     </li>
-{% endfor -%}
+{%- endfor -%}
     </ul>
   </div> 
   <p class="past"><a href="paper">一覧でさらに表示する</a></p>
@@ -101,51 +103,53 @@ layout: default
 </h2>
 {% assign year = 0 -%}
 {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
-{% for row in SAMURAI_patent_sort -%}
+{%- for row in SAMURAI_patent_sort -%}
   {% assign rowYear = row.FilingDate | slice: 0, 4 -%}
-  {% if year != rowYear -%}
-    {% if forloop.first != true -%}
+  {%- if year != rowYear -%}
+    {%- if forloop.first != true -%}
       </ul>
       </div>
-    {% endif -%}
+    {%- endif -%}
     <div class="filterBlock" style="display: none;">
     <h3 class="year-subject" style="display: none;">{{rowYear}}</h3>
     <h4 class="data-type" style="display: none;">特許</h4>
     <ul class="list">
     {% assign year = rowYear -%}
-  {% endif -%}
+  {%- endif %}
       <li data-rowno_patent="{{row.No}}"{% if forloop.index > 10 -%} style="display: none;"{%- endif %}>
-        {% if row.PublicationNo contains "特開" -%}
+        {%- if row.PublicationNo contains "特開" -%}
           <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 2,4}}{{row.PublicationNo | slice: 7,6}}" target="_blank">
-        {% else -%}
+        {%- else -%}
           <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 0,6}}{{row.PublicationNo | slice: 7,6}}" target="_blank">
-        {% endif -%}
+        {%- endif -%}
         {{row.PublicationNo}}</a>&nbsp;
         {{row.Title}}&nbsp;
-        {% if row.Link -%}
+        {%- if row.Link -%}
           {% assign InventorArray = row.Inventor | split: ","-%}
           {% assign LinkArray = row.Link | split: ","-%}
-          {% for name_Inventor in InventorArray -%}
+          {%- for name_Inventor in InventorArray -%}
+            {% assign name_Inventor_str in name_Inventor | strip %}
             {% assign linkFlag = false -%}
-            {% for name_Link in LinkArray -%}
-              {% if name_Link == name_Inventor -%}
+            {%- for name_Link in LinkArray -%}
+              {% assign name_Link_str in LinkArray | strip %}
+              {%- if name_Link_str == name_Inventor_str -%}
                 {% assign linkFlag = true -%}
                 <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Inventor }}</a>
-              {% endif -%}
-            {% endfor -%}
-            {% if linkFlag != true -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if linkFlag != true -%}
               {{ name_Inventor }}
-            {% endif -%}
-            {% if forloop.last != true -%}
+            {%- endif -%}
+            {%- if forloop.last != true -%}
               ,
-            {% endif -%}
-          {% endfor -%}
+            {%- endif -%}
+          {%- endfor -%}
           &nbsp;
-        {% else -%}
+        {%- else -%}
           {{row.Inventor}}&nbsp;      
-        {% endif -%}
+        {%- endif -%}
       </li>
-{% endfor -%}
+{%- endfor -%}
     </ul>
   </div>
   <p class="past"><a href="patent">一覧でさらに表示する</a></p>
