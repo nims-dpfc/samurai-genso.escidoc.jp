@@ -184,6 +184,7 @@ layout: default
     ];
     new_paper.forEach(function(Num){
       $("[data-rowno_paper=" + Num + "]").parents(":hidden").show();
+      $("[data-rowno_paper=" + Num + "]").show();
     });
 
     const new_patent = [
@@ -194,6 +195,7 @@ layout: default
     ];
     new_patent.forEach(function(Num){
       $("[data-rowno_patent=" + Num + "]").parents(":hidden").show();
+      $("[data-rowno_patent=" + Num + "]").show();
     });
 
     const documents_paper = [
