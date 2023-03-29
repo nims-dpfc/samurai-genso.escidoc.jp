@@ -30,37 +30,37 @@ title: 論文の一覧
 <h3 class="year-subject">{{row_PubYear}}</h3>
 <ul class="list">
 {% assign year = row_PubYear -%}
-{% endif -%}
+{%- endif -%}
 <li data-rowno="{{row.No}}">
-{% if row.SamuraiLink -%}
+{%- if row.SamuraiLink -%}
   {% assign AuthorArray = row.Author | split: ","-%}
   {% assign LinkArray = row.SamuraiLink | split: ","-%}
-  {% for name_Author in AuthorArray -%}
+  {%- for name_Author in AuthorArray -%}
     {% assign name_Author_str = name_Author | strip %}
     {% assign linkFlag = false -%}
-    {% for name_Link in LinkArray -%}
+    {%- for name_Link in LinkArray -%}
       {% assign name_Link_str = name_Link | strip %}
-      {% if name_Link_str == name_Author_str -%}
+      {%- if name_Link_str == name_Author_str -%}
         {% assign linkFlag = true -%}
         <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Author }}</a>
-      {% endif -%}
-    {% endfor -%}
-    {% if linkFlag != true -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if linkFlag != true -%}
       {{ name_Author }}
-    {% endif -%}
-    {% if forloop.last != true -%}
+    {%- endif -%}
+    {%- if forloop.last != true -%}
       ,
-    {% endif -%}
-  {% endfor -%}
-{% else -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- else -%}
   {{row.Author}}
-{% endif -%}
+{%- endif -%}
 . {{row.Title}}. {{row.PublicationMedia}}. {% raw -%}({% endraw -%}{{row_PubYear}}{% raw -%}){% endraw -%} - 
-{% if row.DOI | size > 0  -%}        
+{%- if row.DOI | size > 0  -%}        
   <a href="https://doi.org/{{row.DOI}}" target="_blank">{{row.DOI}}</a>
-{% endif -%}
+{%- endif -%}
 </li>
-{% endfor -%}
+{%- endfor -%}
 </ul>
 </div>
 </div>
