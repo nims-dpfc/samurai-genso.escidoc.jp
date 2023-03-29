@@ -72,13 +72,13 @@ title: 特許の一覧
 </div>
 </article>
 <script>
-  $(function () {
-    const documents = [
-      {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
-      {% for row in SAMURAI_patent_sort -%}
-      { 'No': '{{ row.No }}', 'Title': '{{ row.Title | escape }}', 'Name': '{{ row.Inventor | escape }}' },
-      {% endfor -%}
-    ];
+$(function () {
+const documents = [
+{% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
+{% for row in SAMURAI_patent_sort -%}
+{ 'No': '{{ row.No }}', 'Title': '{{ row.Title | escape }}', 'Name': '{{ row.Inventor | escape }}' },
+{% endfor -%}
+];
 {% include lunr.html %}
       $('h2.result-summary').text(results.length + "件の特許が見つかりました。 特許は出願年月日順に表示しています。");
       $('h2.result-summary').show();
