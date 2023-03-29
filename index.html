@@ -50,49 +50,49 @@ layout: default
 </h2>
 {% assign year = 0 -%}
 {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "PublicationDate" | reverse -%}
-{% for row in SAMURAI_paper_sort -%}
+{%- for row in SAMURAI_paper_sort -%}
   {% assign row_PubYear = row.PublicationDate | slice: 0,4 -%}
-  {% if year != row_PubYear -%}
-    {% if forloop.first != true -%}
+  {%- if year != row_PubYear -%}
+    {%- if forloop.first != true %}
       </ul>
       </div>
-    {% endif -%}
+    {%- endif -%}
     <div class="filterBlock" style="display: none;">
     <h3 class="year-subject" style="display: none;">{{row_PubYear}}</h3>
     <h4 class="data-type" style="display: none;">論文</h4>
     <ul class="list">
     {% assign year = row_PubYear -%}
-  {% endif -%}
-    <li data-rowno_paper="{{row.No}}" {% if forloop.index > 10 -%} style="display: none;"{%- endif %}>
-      {% if row.SamuraiLink -%}
+  {%- endif %}
+    <li data-rowno_paper="{{row.No}}" {%- if forloop.index > 10 -%} style="display: none;"{%- endif -%}>
+      {%- if row.SamuraiLink -%}
         {% assign AuthorArray = row.Author | split: ","-%}
         {% assign LinkArray = row.SamuraiLink | split: ","-%}
-        {% for name_Author in AuthorArray -%}
+        {%- for name_Author in AuthorArray -%}
           {% assign name_Author_str = name_Author | strip %}
           {% assign linkFlag = false -%}
-          {% for name_Link in LinkArray -%}
+          {%- for name_Link in LinkArray -%}
             {% assign name_Link_str = name_Link | strip %}
-            {% if name_Link_str == name_Author_str -%}
+            {%- if name_Link_str == name_Author_str -%}
               {% assign linkFlag = true -%}
               <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Author }}</a>
-            {% endif -%}
-          {% endfor -%}
-          {% if linkFlag != true -%}
+            {%- endif -%}
+          {%- endfor -%}
+          {%- if linkFlag != true -%}
             {{ name_Author }}
-          {% endif -%}
-          {% if forloop.last != true -%}
+          {%- endif -%}
+          {%- if forloop.last != true -%}
             ,
-          {% endif -%}
-        {% endfor -%}
-      {% else -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
         {{row.Author}}
-      {% endif -%}
+      {%- endif -%}
       . {{row.Title}}. {{row.PublicationMedia}}. {% raw -%}({% endraw -%}{{row_PubYear}}{% raw -%}){% endraw -%} - 
-      {% if row.DOI | size > 0  -%}        
+      {%- if row.DOI | size > 0  -%}        
         <a href="https://doi.org/{{row.DOI}}" target="_blank">{{row.DOI}}</a>
-      {% endif -%}
+      {%- endif -%}
     </li>
-{% endfor -%}
+{%- endfor %}
     </ul>
   </div> 
   <p class="past"><a href="paper">一覧でさらに表示する</a></p>
