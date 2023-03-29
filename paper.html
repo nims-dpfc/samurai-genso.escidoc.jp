@@ -36,22 +36,13 @@ title: 論文の一覧
   {% assign AuthorArray = row.Author | split: ","-%}
   {% assign LinkArray = row.SamuraiLink | split: ","-%}
   {% for name_Author in AuthorArray -%}
+  {% assign name_Author_str = name_Author | strip %}
     {% assign linkFlag = false -%}
     {% for name_Link in LinkArray -%}
-      name_Link: 「{{name_Link}}」 と name_Author: 「{{name_Author}}」を比較します
-      {% if name_Link | remove: ' ' == name_Author | remove: ' ' -%}
-        真です
-        stripします。
-    {% assign name_Link_sp = name_Link | strip %}
-    {% assign name_Author_sp = name_Author | strip %}
-      name_Link_sp: 「{{name_Link_sp}}」 と name_Author_sp: 「{{name_Author_sp}}」を比較します
-      {% if name_Link_sp == name_Author_sp -%}
-        真です。
-      {% else -%}
-        偽です。
-      {% endif -%}  
-        {% assign linkFlag = true -%}
-        <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Author }}</a>
+    {% assign name_Link_str = name_Link | strip %}
+    {% if name_Link_str == name_Author_str -%}
+      {% assign linkFlag = true -%}
+      <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Author }}</a>
       {% endif -%}
     {% endfor -%}
     {% if linkFlag != true -%}
