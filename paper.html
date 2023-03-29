@@ -38,6 +38,7 @@ title: 論文の一覧
   {% for name_Author in AuthorArray -%}
     {% assign linkFlag = false -%}
     {% for name_Link in LinkArray -%}
+      name_Link: {{name_Link}}  name_Author: {{name_Author}}
       {% if name_Link == name_Author -%}
         {% assign linkFlag = true -%}
         <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Author }}</a>
