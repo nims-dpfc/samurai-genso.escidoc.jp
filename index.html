@@ -56,7 +56,7 @@ layout: default
       </ul>
       </div>
     {% endif -%}
-    <div class="filterBlock">
+    <div class="filterBlock" style="display: none;">
     <h3 class="year-subject" style="display: none;">{{row_PubYear}}</h3>
     <h4 class="data-type" style="display: none;">論文</h4>
     <ul class="list">
@@ -176,6 +176,26 @@ layout: default
 </article>
 <script>
   $(function () {
+    const new_paper = [
+      {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "FilingDate" | reverse -%}
+      {% for row in SAMURAI_paper_sort limit:10 -%}
+        {{row.No}},
+      {% endfor -%}
+    ];
+    new_paper.forEach(function(var No){
+      $("[data-rowno_paper=" + No + "]").parents(":hidden").show();
+    )};
+
+    const new_patent = [
+      {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
+      {% for row in SAMURAI_patent_sort limit:10 -%}
+        {{row.No}},
+      {% endfor -%}
+    ];
+    new_patent.forEach(function(var No){
+      $("[data-rowno_patent=" + No + "]").parents(":hidden").show();
+    )};
+
     const documents_paper = [
       {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "FilingDate" | reverse -%}
       {% for row in SAMURAI_paper_sort -%}
