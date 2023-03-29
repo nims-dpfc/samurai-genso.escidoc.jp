@@ -65,8 +65,8 @@ layout: default
   {%- endif %}
     <li data-rowno_paper="{{row.No}}" {% if forloop.index > 10 -%} style="display: none;"{%- endif %}>
       {%- if row.SamuraiLink -%}
-        {% assign AuthorArray = row.Author | split: ","-%}
-        {% assign LinkArray = row.SamuraiLink | split: ","-%}
+        {% assign AuthorArray = row.Author | split: "," -%}
+        {% assign LinkArray = row.SamuraiLink | split: "," -%}
         {%- for name_Author in AuthorArray -%}
           {% assign name_Author_str = name_Author | strip %}
           {% assign linkFlag = false -%}
