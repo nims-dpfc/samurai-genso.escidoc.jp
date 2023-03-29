@@ -30,7 +30,7 @@ title: 論文の一覧
 <h3 class="year-subject">{{row_PubYear}}</h3>
 <ul class="list">
 {% assign year = row_PubYear -%}
-{%- endif -%}
+{%- endif %}
 <li data-rowno="{{row.No}}">
 {%- if row.SamuraiLink -%}
   {% assign AuthorArray = row.Author | split: ","-%}
