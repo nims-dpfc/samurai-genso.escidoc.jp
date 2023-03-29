@@ -107,7 +107,7 @@ layout: default
       </ul>
       </div>
     {% endif -%}
-    <div class="filterBlock">
+    <div class="filterBlock" style="display: none;">
     <h3 class="year-subject" style="display: none;">{{rowYear}}</h3>
     <h4 class="data-type" style="display: none;">特許</h4>
     <ul class="list">
@@ -178,23 +178,23 @@ layout: default
   $(function () {
     const new_paper = [
       {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "FilingDate" | reverse -%}
-      {% for row in SAMURAI_paper_sort limit:10 -%}
+      {%- for row in SAMURAI_paper_sort limit:10 -%}
         {{row.No}},
       {%- endfor -%}
     ];
     new_paper.forEach(function(Num){
       $("[data-rowno_paper=" + Num + "]").parents(":hidden").show();
-    )};
+    });
 
     const new_patent = [
       {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
-      {% for row in SAMURAI_patent_sort limit:10 -%}
+      {%- for row in SAMURAI_patent_sort limit:10 -%}
         {{row.No}},
       {%- endfor -%}
     ];
     new_patent.forEach(function(Num){
       $("[data-rowno_patent=" + Num + "]").parents(":hidden").show();
-    )};
+    });
 
     const documents_paper = [
       {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "FilingDate" | reverse -%}
