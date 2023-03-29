@@ -41,7 +41,7 @@ title: 論文の一覧
       name_Link: 「{{name_Link}}」 と name_Author: 「{{name_Author}}」を比較します
       {% if name_Link | remove: ' ' == name_Author | remove: ' ' -%}
         真です
-        removeします。
+        stripします。
     {% assign name_Link_sp = name_Link | strip %}
     {% assign name_Author_sp = name_Author | strip %}
       name_Link_sp: 「{{name_Link_sp}}」 と name_Author_sp: 「{{name_Author_sp_sp}}」を比較します
