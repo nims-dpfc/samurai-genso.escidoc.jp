@@ -177,7 +177,7 @@ layout: default
 <script>
   $(function () {
     const new_paper = [
-      {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "FilingDate" | reverse -%}
+      {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "PublicationDate" | reverse -%}
       {%- for row in SAMURAI_paper_sort limit:10 -%}
         {{row.No}},
       {%- endfor -%}
@@ -199,7 +199,7 @@ layout: default
     });
 
     const documents_paper = [
-      {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "FilingDate" | reverse -%}
+      {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "PublicationDate" | reverse -%}
       {% for row in SAMURAI_paper_sort -%}
       { 'No': '{{ row.No }}', 'Title': '{{ row.Title | escape }}', 'Name': '{{ row.Author | escape }}' },
       {% endfor -%}
