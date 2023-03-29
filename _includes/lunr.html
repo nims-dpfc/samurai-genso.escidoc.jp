@@ -1,5 +1,5 @@
 
-    require(['assets/js/lunr-languages/test/lunr/lunr-0.7.0.min.js', 'assets/js/lunr-languages/lunr.stemmer.support.js', 'assets/js/lunr-languages/tinyseg.js', 'assets/js/lunr-languages/lunr.ja.js'], function (lunr, stemmerSupport, TinySegmenter, ja) {
+    require(['assets/js/lunr-languages/test/lunr/lunr-1.0.0.min.js', 'assets/js/lunr-languages/lunr.stemmer.support.js', 'assets/js/lunr-languages/tinyseg.js', 'assets/js/lunr-languages/lunr.ja.js'], function (lunr, stemmerSupport, TinySegmenter, ja) {
       // since the `stemmerSupport` and `ja` add keys on the lunr object, we'll pass it as reference to them
       // in the end, we will only need `lunr`.
       stemmerSupport(lunr); // adds `lunr.stemmerSupport`
