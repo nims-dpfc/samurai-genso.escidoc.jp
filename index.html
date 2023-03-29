@@ -180,20 +180,20 @@ layout: default
       {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "FilingDate" | reverse -%}
       {% for row in SAMURAI_paper_sort limit:10 -%}
         {{row.No}},
-      {% endfor -%}
+      {%- endfor -%}
     ];
-    new_paper.forEach(function(var No){
-      $("[data-rowno_paper=" + No + "]").parents(":hidden").show();
+    new_paper.forEach(function(Num){
+      $("[data-rowno_paper=" + Num + "]").parents(":hidden").show();
     )};
 
     const new_patent = [
       {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
       {% for row in SAMURAI_patent_sort limit:10 -%}
         {{row.No}},
-      {% endfor -%}
+      {%- endfor -%}
     ];
-    new_patent.forEach(function(var No){
-      $("[data-rowno_patent=" + No + "]").parents(":hidden").show();
+    new_patent.forEach(function(Num){
+      $("[data-rowno_patent=" + Num + "]").parents(":hidden").show();
     )};
 
     const documents_paper = [
