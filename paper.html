@@ -33,14 +33,12 @@ title: 論文の一覧
 {% endif -%}
 <li data-rowno="{{row.No}}">
 {% if row.SamuraiLink -%}
-  {% assign AuthorArray = row.Author | split: ","-%}
-  {% assign LinkArray = row.SamuraiLink | split: ","-%}
+  {% assign AuthorArray = row.Author | split: "," | strip -%}
+  {% assign LinkArray = row.SamuraiLink | split: "," | strip -%}
   {% for name_Author in AuthorArray -%}
-  {% assign name_Author_str = name_Author | strip %}
     {% assign linkFlag = false -%}
     {% for name_Link in LinkArray -%}
-    {% assign name_Link_str = name_Link | strip %}
-    {% if name_Link_str == name_Author_str -%}
+    {% if name_Link == name_Author -%}
       {% assign linkFlag = true -%}
       <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Author }}</a>
       {% endif -%}
