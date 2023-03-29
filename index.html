@@ -128,9 +128,11 @@ layout: default
           {% assign InventorArray = row.Inventor | split: ","-%}
           {% assign LinkArray = row.Link | split: ","-%}
           {% for name_Inventor in InventorArray -%}
+            {% assign name_Inventor_str = name_Inventor | strip %}
             {% assign linkFlag = false -%}
             {% for name_Link in LinkArray -%}
-              {% if name_Link == name_Inventor -%}
+              {% assign name_Link_str = name_Link | strip %}
+              {% if name_Link_str == name_Inventor_str -%}
                 {% assign linkFlag = true -%}
                 <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Inventor }}</a>
               {% endif -%}
