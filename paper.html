@@ -70,7 +70,7 @@ title: 論文の一覧
 <script>
 $(function () {
 const documents = [
-{% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "FilingDate" | reverse -%}
+{% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "PublicationDate" | reverse -%}
 {% for row in SAMURAI_paper_sort -%}
 { 'No': '{{ row.No }}', 'Title': '{{ row.Title | escape }}', 'Name': '{{ row.Author | escape }}' },
 {% endfor -%}
