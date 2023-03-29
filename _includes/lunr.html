@@ -32,5 +32,7 @@
       results.forEach(function (row) {
         $("[data-rowno=" + row["ref"] + "]").show();
         $("[data-rowno=" + row["ref"] + "]").parents(":hidden").show();
+        $('h2.result-summary').text(results.length);
+        $('h2.result-summary').show();
       });
     });
