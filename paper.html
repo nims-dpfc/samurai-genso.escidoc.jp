@@ -56,8 +56,10 @@ title: 論文の一覧
   {{row.Author}}
 {%- endif -%}
 . {{row.Title}}. {{row.PublicationMedia}}. {% raw -%}({% endraw -%}{{row_PubYear}}{% raw -%}){% endraw -%} - 
-{%- if row.DOI | size > 0  -%}        
+{%- if row.DOI -%}
+  {%- if size > 0 -%}        
   <a href="https://doi.org/{{row.DOI}}" target="_blank">{{row.DOI}}</a>
+  {%- endif -%}
 {%- endif -%}
 </li>
 {%- endfor -%}

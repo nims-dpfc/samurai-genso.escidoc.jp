@@ -1,7 +1,51 @@
----
-layout: default
----
-<title>元素戦略磁性材料研究拠点業績総覧 | ホーム</title>
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <script src="assets/js/require.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ </head>
+ <body>
+  <header class="header clearfix" id="pagetop">
+    <section class="site_title">
+      <h1 class="logo">
+        <a href="index">
+          <img alt="" src="img/top.png" class="mark"/>
+          <span class="unitname">
+              <img alt="SAMURAI" src="img/samurai_name.svg" class="samurai"/>
+              <span class="name">元素戦略磁性材料研究拠点 | Elements Strategy Initiative Center for Magnetic Materials</span>
+          </span>
+        </a>
+      </h1>
+    </section>
+    <nav class="header_navi">
+      <ul class="clearfix" id="header_pane">
+        <li class="header_sp_menu">
+          <span class="off">&#xf394;</span>
+          <span class="on">&#xf129;</span>
+        </li>
+      </ul>
+    </nav>
+    <ul class="unit-logo">
+        <li><a href="https://www.nims.go.jp/ESICMM/" target="_blank"><img src="img/ESICMM.png" alt=""></a></li>
+        <li><a href="https://www.nims.go.jp/" target="_blank"><img src="img/nims_logo.png" alt="NIMS"></a></li>
+    </ul>
+  </header>
+    <nav class="global_navi">
+      <ul class="clearfix">
+        <li class="global_album">
+          <a title="元素戦略磁性材料研究拠点 | Elements Strategy Initiative Center for Magnetic Materialsの論文の一覧です。" href="paper">論文一覧</a>
+        </li>
+        <li class="global_howto">
+          <a title="元素戦略磁性材料研究拠点 | Elements Strategy Initiative Center for Magnetic Materialsの特許の一覧です。" href="patent">特許一覧</a>
+        </li>
+        <li class="global_samurai">
+          <a title="当サイトの説明です。" href="about">当サイトについて</a>
+        </li>
+      </ul>
+    </nav>
+ <title>元素戦略磁性材料研究拠点業績総覧 | ホーム</title>
 
 <article class="wrap home">
 <div class="clearfix" id="main_frame">
@@ -48,53 +92,26 @@ layout: default
 <h2 class="title">新着論文
 <span class="date">更新日： 2023年03月31日 </span>
 </h2>
-{% assign year = 0 -%}
-{% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "PublicationDate" | reverse -%}
-{%- for row in SAMURAI_paper_sort -%}
-  {% assign row_PubYear = row.PublicationDate | slice: 0,4 -%}
-  {%- if year != row_PubYear -%}
-    {%- if forloop.first != true %}
-      </ul>
-      </div>
-    {%- endif -%}
-    <div class="filterBlock" style="display: none;">
-    <h3 class="year-subject" style="display: none;">{{row_PubYear}}</h3>
+<div class="filterBlock" style="display: none;">
+    <h3 class="year-subject" style="display: none;">2013</h3>
     <h4 class="data-type" style="display: none;">論文</h4>
     <ul class="list">
-    {% assign year = row_PubYear -%}
-  {%- endif %}
-    <li data-rowno_paper="{{row.No}}" {%- if forloop.index > 10 -%} style="display: none;"{%- endif -%}>
-      {%- if row.SamuraiLink -%}
-        {% assign AuthorArray = row.Author | split: ","-%}
-        {% assign LinkArray = row.SamuraiLink | split: ","-%}
-        {%- for name_Author in AuthorArray -%}
-          {% assign name_Author_str = name_Author | strip %}
-          {% assign linkFlag = false -%}
-          {%- for name_Link in LinkArray -%}
-            {% assign name_Link_str = name_Link | strip %}
-            {%- if name_Link_str == name_Author_str -%}
-              {% assign linkFlag = true -%}
-              <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Author }}</a>
-            {%- endif -%}
-          {%- endfor -%}
-          {%- if linkFlag != true -%}
-            {{ name_Author }}
-          {%- endif -%}
-          {%- if forloop.last != true -%}
-            ,
-          {%- endif -%}
-        {%- endfor -%}
-      {%- else -%}
-        {{row.Author}}
-      {%- endif -%}
-      . {{row.Title}}. {{row.PublicationMedia}}. {% raw -%}({% endraw -%}{{row_PubYear}}{% raw -%}){% endraw -%} - 
-      {%- if row.DOI -%}
-        {%- if size > 0 -%}        
-        <a href="https://doi.org/{{row.DOI}}" target="_blank">{{row.DOI}}</a>
-        {%- endif -%}
-      {%- endif -%}
-    </li>
-{%- endfor %}
+    
+    <li data-rowno_paper="6">author01. test05. test publication. (2013)-</li>
+    <li data-rowno_paper="9">author01, author02, author03, author04, author05, author06, author07, author08. test08. test publication. (2013)-</li>
+    <li data-rowno_paper="5">author01. test04. test publication. (2013)-</li>
+    <li data-rowno_paper="8">author01. test07. test publication. (2013)-</li>
+    <li data-rowno_paper="7">author01, author02, author03. test06. test publication. (2013)-</li>
+    <li data-rowno_paper="3"> author01. test03. test publication. (2013)-</li>
+      </ul>
+      </div><div class="filterBlock" style="display: none;">
+    <h3 class="year-subject" style="display: none;">2012</h3>
+    <h4 class="data-type" style="display: none;">論文</h4>
+    <ul class="list">
+    
+    <li data-rowno_paper="4">author01, author02, author03, author04, author05, author06, author07, author08, author09. test03. test publication. (2012)-</li>
+    <li data-rowno_paper="1">author01, author02. test01. test publication. (2012)-</li>
+    <li data-rowno_paper="2">author01, author02, author03. test02. test publication. (2012)-</li>
     </ul>
   </div> 
   <p class="past"><a href="paper">一覧でさらに表示する</a></p>
@@ -103,55 +120,36 @@ layout: default
 <h2 class="title">新着特許
 <span class="date">更新日： 2023年03月31日 </span>
 </h2>
-{% assign year = 0 -%}
-{% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
-{%- for row in SAMURAI_patent_sort -%}
-  {% assign rowYear = row.FilingDate | slice: 0, 4 -%}
-  {%- if year != rowYear -%}
-    {%- if forloop.first != true %}
-      </ul>
-      </div>
-    {%- endif -%}
-    <div class="filterBlock" style="display: none;">
-    <h3 class="year-subject" style="display: none;">{{rowYear}}</h3>
+<div class="filterBlock" style="display: none;">
+    <h3 class="year-subject" style="display: none;">2019</h3>
     <h4 class="data-type" style="display: none;">特許</h4>
     <ul class="list">
-    {% assign year = rowYear -%}
-  {% endif %}
-      <li data-rowno_patent="{{row.No}}"{%- if forloop.index > 10 -%} style="display: none;"{%- endif -%}>
-        {%- if row.PublicationNo contains "特開" -%}
-          <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 2,4}}{{row.PublicationNo | slice: 7,6}}" target="_blank">
-        {%- else -%}
-          <a href="https://patents.google.com/patent/JP{{row.PublicationNo | slice: 0,6}}{{row.PublicationNo | slice: 7,6}}" target="_blank">
-        {%- endif -%}
-        {{row.PublicationNo}}</a>&nbsp;
-        {{row.Title}}&nbsp;
-        {%- if row.Link -%}
-          {% assign InventorArray = row.Inventor | split: ","-%}
-          {% assign LinkArray = row.Link | split: ","-%}
-          {%- for name_Inventor in InventorArray -%}
-            {% assign name_Inventor_str = name_Inventor | strip %}
-            {% assign linkFlag = false -%}
-            {%- for name_Link in LinkArray -%}
-              {% assign name_Link_str = name_Link | strip %}
-              {%- if name_Link_str == name_Inventor_str -%}
-                {% assign linkFlag = true -%}
-                <a href="{{ LinkArray[forloop.index] }}" target="_blank">{{ name_Inventor }}</a>
-              {%- endif -%}
-            {%- endfor -%}
-            {%- if linkFlag != true -%}
-              {{ name_Inventor }}
-            {%- endif -%}
-            {%- if forloop.last != true -%}
-              ,
-            {%- endif -%}
-          {%- endfor -%}
-          &nbsp;
-        {%- else -%}
-          {{row.Inventor}}&nbsp;      
-        {%- endif -%}
-      </li>
-{%- endfor %}
+    
+      <li data-rowno_patent="4"><a href="https://patents.google.com/patent/JP2023139112" target="_blank">特開2023-139112(P2023-234567A)</a>&nbsp;
+        test04&nbsp;
+            inventor01,
+            inventor02,
+            inventor03,
+            inventor04,
+            inventor05&nbsp;</li>
+      <li data-rowno_patent="3"><a href="https://patents.google.com/patent/JP2023040611" target="_blank">特開2023-040611(P2023-123456A)</a>&nbsp;
+        test03&nbsp;inventor01,inventor02,inventor03,inventor04&nbsp;</li>
+      </ul>
+      </div><div class="filterBlock" style="display: none;">
+    <h3 class="year-subject" style="display: none;">2017</h3>
+    <h4 class="data-type" style="display: none;">特許</h4>
+    <ul class="list">
+    
+      <li data-rowno_patent="2"><a href="https://patents.google.com/patent/JPWO2023040610" target="_blank">WO2023/040610</a>&nbsp;
+        test02&nbsp;inventor01,inventor02,inventor03,inventor04,inventor05,inventor06&nbsp;</li>
+      </ul>
+      </div><div class="filterBlock" style="display: none;">
+    <h3 class="year-subject" style="display: none;">2014</h3>
+    <h4 class="data-type" style="display: none;">特許</h4>
+    <ul class="list">
+    
+      <li data-rowno_patent="1"><a href="https://patents.google.com/patent/JP2023040609" target="_blank">特開2023-040609(P2023-12345A)</a>&nbsp;
+        test01&nbsp;inventor01,inventor02,inventor03,inventor04&nbsp;</li>
     </ul>
   </div>
   <p class="past"><a href="patent">一覧でさらに表示する</a></p>
@@ -184,38 +182,35 @@ layout: default
 <script>
   $(function () {
     const new_paper = [
-      {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "PublicationDate" | reverse -%}
-      {%- for row in SAMURAI_paper_sort limit:10 -%}
-        {{row.No}},
-      {%- endfor -%}
-    ];
+      6,9,5,8,7,3,4,1,2,];
     new_paper.forEach(function(Num){
       $("[data-rowno_paper=" + Num + "]").parents(":hidden").show();
     });
 
     const new_patent = [
-      {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
-      {%- for row in SAMURAI_patent_sort limit:10 -%}
-        {{row.No}},
-      {%- endfor -%}
-    ];
+      4,3,2,1,];
     new_patent.forEach(function(Num){
       $("[data-rowno_patent=" + Num + "]").parents(":hidden").show();
     });
 
     const documents_paper = [
-      {% assign SAMURAI_paper_sort = site.data.SAMURAI_paper | sort: "PublicationDate" | reverse -%}
-      {% for row in SAMURAI_paper_sort -%}
-      { 'No': '{{ row.No }}', 'Title': '{{ row.Title | escape }}', 'Name': '{{ row.Author | escape }}' },
-      {% endfor -%}
-    ];
+      { 'No': '6', 'Title': 'test05', 'Name': 'author01' },
+      { 'No': '9', 'Title': 'test08', 'Name': 'author01, author02, author03, author04, author05, author06, author07, author08' },
+      { 'No': '5', 'Title': 'test04', 'Name': 'author01' },
+      { 'No': '8', 'Title': 'test07', 'Name': 'author01' },
+      { 'No': '7', 'Title': 'test06', 'Name': 'author01, author02, author03' },
+      { 'No': '3', 'Title': 'test03', 'Name': ' author01' },
+      { 'No': '4', 'Title': 'test03', 'Name': 'author01, author02, author03, author04, author05, author06, author07, author08, author09' },
+      { 'No': '1', 'Title': 'test01', 'Name': 'author01, author02' },
+      { 'No': '2', 'Title': 'test02', 'Name': 'author01, author02, author03' },
+      ];
 
     const documents_patent = [
-      {% assign SAMURAI_patent_sort = site.data.SAMURAI_patent | sort: "FilingDate" | reverse -%}
-      {% for row in SAMURAI_patent_sort -%}
-      { 'No': '{{ row.No }}', 'Title': '{{ row.Title | escape }}', 'Name': '{{ row.Inventor | escape }}' },
-      {% endfor -%}
-    ];
+      { 'No': '4', 'Title': 'test04', 'Name': 'inventor01,inventor02,inventor03,inventor04,inventor05' },
+      { 'No': '3', 'Title': 'test03', 'Name': 'inventor01,inventor02,inventor03,inventor04' },
+      { 'No': '2', 'Title': 'test02', 'Name': 'inventor01,inventor02,inventor03,inventor04,inventor05,inventor06' },
+      { 'No': '1', 'Title': 'test01', 'Name': 'inventor01,inventor02,inventor03,inventor04' },
+      ];
 
     require(['assets/js/lunr-languages/test/lunr/lunr-1.0.0.min.js', 'assets/js/lunr-languages/lunr.stemmer.support.js', 'assets/js/lunr-languages/tinyseg.js', 'assets/js/lunr-languages/lunr.ja.js'], function (lunr, stemmerSupport, TinySegmenter, ja) {
       // since the `stemmerSupport` and `ja` add keys on the lunr object, we'll pass it as reference to them
@@ -328,3 +323,23 @@ layout: default
     });
   });       
 </script>
+
+  <footer class="footer">
+    <nav>
+      <div class="foot_navi">
+        <ul class="clearfix">
+          <li class="contact">SAMURAIへのお問い合わせは、<a href="mailto:samurai-genso@ml.nims.go.jp">samurai-genso@ml.nims.go.jp</a>までお願いいたします。</li>
+        </ul>
+      </div>
+    </nav>
+    <div class="footer_copyright">Copyright &copy; 2001-2021 
+      <a href="//www.nims.go.jp">National Institute for Materials Science (NIMS)
+      </a>
+      <br />国立研究開発法人物質・材料研究機構 〒305-0047 茨城県つくば市千現1-2-1
+      <br />TEL. 029-859-2000 (代表) 
+      <a href="//www.nims.go.jp/siteinfo/contact.html">（お問い合わせ先一覧）
+      </a>
+    </div>
+  </footer>
+ </body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <script src="assets/js/require.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ </head>
+ <body>
+  <header class="header clearfix" id="pagetop">
+    <section class="site_title">
+      <h1 class="logo">
+        <a href="index">
+          <img alt="" src="img/top.png" class="mark"/>
+          <span class="unitname">
+              <img alt="SAMURAI" src="img/samurai_name.svg" class="samurai"/>
+              <span class="name">元素戦略磁性材料研究拠点 | Elements Strategy Initiative Center for Magnetic Materials</span>
+          </span>
+        </a>
+      </h1>
+    </section>
+    <nav class="header_navi">
+      <ul class="clearfix" id="header_pane">
+        <li class="header_sp_menu">
+          <span class="off">&#xf394;</span>
+          <span class="on">&#xf129;</span>
+        </li>
+      </ul>
+    </nav>
+    <ul class="unit-logo">
+        <li><a href="https://www.nims.go.jp/ESICMM/" target="_blank"><img src="img/ESICMM.png" alt=""></a></li>
+        <li><a href="https://www.nims.go.jp/" target="_blank"><img src="img/nims_logo.png" alt="NIMS"></a></li>
+    </ul>
+  </header>
+    <nav class="global_navi">
+      <ul class="clearfix">
+        <li class="global_album">
+          <a title="元素戦略磁性材料研究拠点 | Elements Strategy Initiative Center for Magnetic Materialsの論文の一覧です。" href="paper">論文一覧</a>
+        </li>
+        <li class="global_howto">
+          <a title="元素戦略磁性材料研究拠点 | Elements Strategy Initiative Center for Magnetic Materialsの特許の一覧です。" href="patent">特許一覧</a>
+        </li>
+        <li class="global_samurai">
+          <a title="当サイトの説明です。" href="about">当サイトについて</a>
+        </li>
+      </ul>
+    </nav>
+ <title>元素戦略磁性材料研究拠点業績総覧 | 論文の一覧</title>
+
+<article class="wrap search_prof search_article">
+<div class="main_frame clearfix">
+<section class="contents articles">
+<h2 class="pagetitle">論文の一覧</h2>
+<p class="txt text-right">最終更新時刻: 2023年03月31日</p>
+<div class="paper_list">
+<div id="search_keyword">
+<div class="search_block row">
+<input type="search" name="q" id="search_word" value="" class="col-md-10 txt_input txt_result" placeholder="">
+<input type="submit" name="commit" value="検索する" class="btn" data-disable-with="検索する">
+</div>
+</div>
+<h2 class="result-summary" style="display: none;"></h2>
+<div class="filterBlock">
+<h3 class="year-subject">2013</h3>
+<ul class="list">
+
+<li data-rowno="6">author01. test05. test publication. (2013)-</li>
+<li data-rowno="9">author01, author02, author03, author04, author05, author06, author07, author08. test08. test publication. (2013)-</li>
+<li data-rowno="5">author01. test04. test publication. (2013)-</li>
+<li data-rowno="8">author01. test07. test publication. (2013)-</li>
+<li data-rowno="7">author01, author02, author03. test06. test publication. (2013)-</li>
+<li data-rowno="3"> author01. test03. test publication. (2013)-</li></ul>
+</div>
+<div class="filterBlock">
+<h3 class="year-subject">2012</h3>
+<ul class="list">
+
+<li data-rowno="4">author01, author02, author03, author04, author05, author06, author07, author08, author09. test03. test publication. (2012)-</li>
+<li data-rowno="1">author01, author02. test01. test publication. (2012)-</li>
+<li data-rowno="2">author01, author02, author03. test02. test publication. (2012)-</li></ul>
+</div>
+</div>
+</section>
+</div>
+<div id="bnr_link">
+<div class="clearfix">
+</div>
+</div>
+</article>
+<script>
+$(function () {
+const documents = [
+{ 'No': '6', 'Title': 'test05', 'Name': 'author01' },
+{ 'No': '9', 'Title': 'test08', 'Name': 'author01, author02, author03, author04, author05, author06, author07, author08' },
+{ 'No': '5', 'Title': 'test04', 'Name': 'author01' },
+{ 'No': '8', 'Title': 'test07', 'Name': 'author01' },
+{ 'No': '7', 'Title': 'test06', 'Name': 'author01, author02, author03' },
+{ 'No': '3', 'Title': 'test03', 'Name': ' author01' },
+{ 'No': '4', 'Title': 'test03', 'Name': 'author01, author02, author03, author04, author05, author06, author07, author08, author09' },
+{ 'No': '1', 'Title': 'test01', 'Name': 'author01, author02' },
+{ 'No': '2', 'Title': 'test02', 'Name': 'author01, author02, author03' },
+];
+
+    require(['assets/js/lunr-languages/test/lunr/lunr-1.0.0.min.js', 'assets/js/lunr-languages/lunr.stemmer.support.js', 'assets/js/lunr-languages/tinyseg.js', 'assets/js/lunr-languages/lunr.ja.js'], function (lunr, stemmerSupport, TinySegmenter, ja) {
+      // since the `stemmerSupport` and `ja` add keys on the lunr object, we'll pass it as reference to them
+      // in the end, we will only need `lunr`.
+      stemmerSupport(lunr); // adds `lunr.stemmerSupport`
+      TinySegmenter(lunr);
+      ja(lunr); // adds `lunr.ja` key
+      // at this point, `lunr` can be used
+      idx = lunr(function () {
+        // use the language (ja)
+        this.use(lunr.ja);
+        this.tokenizer = function (str) {
+            return [str];
+        };
+        // then, the normal lunr index initialization
+        this.ref('No')
+        this.field('Title')
+        this.field('Name')
+        /* add documents to index */
+        documents.forEach(function (doc) {
+          this.add(doc);
+        }, this);
+      });
+    });
+
+    $(".btn").on('click', function() {
+      $("div.filterBlock").hide();
+      $("ul.list li").hide();
+      const results = idx.search($('#search_word').val(), function (query) {
+        return [query.term];
+      });
+      results.forEach(function (row) {
+        $("[data-rowno=" + row["ref"] + "]").show();
+        $("[data-rowno=" + row["ref"] + "]").parents(":hidden").show();
+      });
+
+      $('h2.result-summary').text(results.length + "件の論文が見つかりました。 論文は出版年月日順に表示しています。");
+      $('h2.result-summary').show();
+    });
+  });
+</script>
+
+  <footer class="footer">
+    <nav>
+      <div class="foot_navi">
+        <ul class="clearfix">
+          <li class="contact">SAMURAIへのお問い合わせは、<a href="mailto:samurai-genso@ml.nims.go.jp">samurai-genso@ml.nims.go.jp</a>までお願いいたします。</li>
+        </ul>
+      </div>
+    </nav>
+    <div class="footer_copyright">Copyright &copy; 2001-2021 
+      <a href="//www.nims.go.jp">National Institute for Materials Science (NIMS)
+      </a>
+      <br />国立研究開発法人物質・材料研究機構 〒305-0047 茨城県つくば市千現1-2-1
+      <br />TEL. 029-859-2000 (代表) 
+      <a href="//www.nims.go.jp/siteinfo/contact.html">（お問い合わせ先一覧）
+      </a>
+    </div>
+  </footer>
+ </body>
+</html>
