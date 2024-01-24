@@ -93,7 +93,7 @@ No,Title,Author,SamuraiLink,PublicationMedia,PublicationDate,DOI
 92,Structure and chemical composition of the grain boundary phase in Nd-Fe-B sintered magnets,"T. T. Sasaki, T. Ohkubo, K. Hono",,"Acta MaterialiaVolume 115, Pages 269–277, 2016",2016/8/1 0:00,10.1016/j.actamat.2016.05.035
 93,Strain measurement in ferromagnetic crystals using dark-field electron holography,"Y. Murakami, K. Niitsu, S. Kaneko, T. Tanigaki, T. Sasaki, Z. Akase, D. Shindo, T. Ohkubo, K. Hono",,"Applied Physics LettersVolume 109, 193102, Issue 19, 2016",2016/11/1 0:00,10.1063/1.4967005
 94,マイクロマグネティクス計算によるNd-Fe-B磁石磁化反転過程の解析,"大久保忠勝, HosseinSepehriAmin, 宝野和博",,"日本金属学会誌Vol. 81 No. 1 p. 11-18, 2017",2016/12/25 0:00,10.2320/jinstmet.ja201602
-95,ネオジム焼結磁石の微細組織―粒界相および界面組織,"佐々木泰祐, 大久保忠勝, 宝野和博",,"日本金属学会誌Vol. 81 No. 1 p. 2-10, 2017",2016/12/25 0:00,10.2320/jinstmet.JA201606
+95,ネオジム焼結磁石の微細組織—粒界相および界面組織,"佐々木泰祐, 大久保忠勝, 宝野和博",,"日本金属学会誌Vol. 81 No. 1 p. 2-10, 2017",2016/12/25 0:00,10.2320/jinstmet.JA201606
 96,Large-scale micromagnetic simulation of Nd-Fe-B sintered magnets with Dy-rich shell structures,"T. Oikawa, H. Yokota, T. Ohkubo, K. Hono",,"AIP Advances 6, 056006 (2016)",2016/2/25 0:00,10.1063/1.4943058
 97,Micromagnetic Simulations of Magnetization Reversals in Nd-Fe-B Based Permanent Magnets,"H. Sepehri-Amin, T. Ohkubo, K. Hono",,"Materials Transactions 57 (8), 1221-1229 (2016)",2016/6/24 0:00,10.2320/matertrans.M2015457
 98,High coercivity Sm2Fe17N3 submicron size powder prepared by polymerized-complex and reduction–diffusion process,"Y. Hirayama, A.K. Panda, T. Ohkubo, K. Hono",,"Scripta Materialia 120, 27-30 (2016)",2016/7/15 0:00,10.1016/j.scriptamat.2016.03.028
@@ -165,7 +165,7 @@ No,Title,Author,SamuraiLink,PublicationMedia,PublicationDate,DOI
 164,量子ビームを用いた永久磁石材料の評価分析,小野寛太,,"まてりあ, 56, 199 (2017)",2017/1/1 0:00,10.2320/materia.56.199
 165,Quantitative evaluation of site preference in Dy-substituted Nd2Fe14B,"Kotaro Saito, Shotaro Doi, Taichi Abe, Kanta Ono",,"Journal of Alloys and Compounds, 巻:721, ページ:476-481, 2017",2017/4/1 0:00,10.1016/j.jallcom.2017.04.155
 166,フェーズフィールド法と特性計算の新潮流,小山敏幸,,"特殊鋼, vol.66, pp.36-39, 2017",2017/7/1 0:00,
-167,第4章 スピノーダル分解　–その基礎から発展へ–,小山敏幸,,"日本金属学会セミナーテキスト「状態図および相変態の基礎と応用 －計算工学の観点から－」,No.113, pp.29-37, 2018",2018/1/1 0:00,
+167,第4章 スピノーダル分解　–その基礎から発展へ–,小山敏幸,,"日本金属学会セミナーテキスト「状態図および相変態の基礎と応用 −計算工学の観点から−」,No.113, pp.29-37, 2018",2018/1/1 0:00,
 168,Machine learning reveals orbital interaction in materials,"Tien-Lam Pham, Hiori Kino, Kiyoyuki Terakura, Takashi Miyake, Koji Tsuda, Ichigaku Takigawa, Hieu-Chi Dam",,"Science and Technology of Advanced Materials, 巻:18, 号:1, ページ:756-765, 2017",2017/10/1 0:00,10.1080/14686996.2017.1378060
 169,A Chemical Bond-based Representation of Materials,"Van-Doan Nguyen, Dinh-Khiet Le, Tien-Lam Pham, Hieu-Chi Dam",,"The Thirty-second Annual Conference on Neural Information Processing Systems (NIPS) 2017, Machine Learning for Molecules and Materials Workshop proceeding, arXiv:1712.01663v2",2017/12/1 0:00,
 170,Neural Network for Learning Universal Atomic Forces,"Tien-Lam Pham, Hiori Kino, Takashi Miyake, Viet-Cuong Nguyen, Hieu-Chi Dam",,"The Thirty-second Annual Conference on Neural Information Processing Systems (NIPS) 2017, Machine Learning for Molecules and Materials Workshop proceeding",2017/12/1 0:00,
@@ -274,3 +274,5 @@ No,Title,Author,SamuraiLink,PublicationMedia,PublicationDate,DOI
 273,酸素ポンプの手法開発および酸素センサーの電解質材料,"小林能直, 李嘉俊, 守田祐哉",,"耐火物 71(6), 226-231",2019/6/1 0:00,
 274,A New Design of Oxygen Sensor for Electromotive Force Measurement and Electrochemical Deoxidation by Using Oxygen Pump,"Jiajun LI, Yoshinao KOBAYASHI.",,"ISIJ International,Advance Publication by J-STAGE 60, 6, 1135-1140(2020)",2020/2/1 0:00,10.2355/isijinternational.ISIJINT-2019-641
 275,Magnetic Flux Density Measurements from Grain Boundary Phase in 0.1 at% Ga-doped Nd-Fe-B Sintered Magnet,"Y. Cho, T.T. Sasaki, K. Harada, A. Sato, T. Tamaoka, D. Shindo, T. Ohkubo, K. Hono, Y. Murakami",,"Scripta Materialia 178, 533-538(2020)",2020/1/1 0:00,10.1016/j.scriptamat.2019.12.030
+276,Thermodynamic and magnetic properties for Dy2Fe14B determined by heat capacity measurement from very low to high temperatures and solution calorimetry,"Masao Morishita, Taichi Abe, Hiroaki Yamamoto, Ai Nozaki, Shinya Kimura",,"Thermochimica Acta 721, 179410 (2023).",2023/1/31 0:00,10.1016/j.tca.2022.179410
+277,"Magnetic characterization of Sm(Fe1-x, Cox)11Ti (x = 0, 0.1) determined by heat-capacity measurement from very low to high temperatures","Masao Morishita, Taichi Abe, Tadakatsu Ohkubo, Terumasa Tadano, Hiroaki Yamamoto, Ai Nozaki, Hikaru Miyazaki",,"Thermochimica Acta 727, 179573 (2023).",2023/8/6 0:00,10.1016/j.tca.2023.179573
